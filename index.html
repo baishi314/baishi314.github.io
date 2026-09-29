@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
@@ -70,6 +70,11 @@
   /* About */
   .about p{color:var(--muted);font-size:16px;max-width:720px}
   .about strong{color:var(--text)}
+  .facts{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:26px;max-width:860px}
+  .facts li{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;transition:.2s}
+  .facts li:hover{border-color:color-mix(in srgb,var(--primary) 45%,transparent)}
+  .facts li b{display:block;font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.4px}
+  .facts li span{font-size:15px;color:var(--text)}
 
   /* Skills */
   .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
@@ -115,7 +120,7 @@
 
 <nav>
   <div class="nav-in">
-    <div class="logo">baishi314<span>.</span></div>
+    <div class="logo">冯奕凯<span>.</span></div>
     <div class="nav-links">
       <a href="#about">关于</a>
       <a href="#skills">技能</a>
@@ -128,9 +133,9 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="avatar">b</div>
-    <h1>你好，我是 <span class="grad">baishi314</span></h1>
-    <p class="sub">计算机专业学生 · 东北大学秦皇岛分校</p>
+    <div class="avatar">冯</div>
+    <h1>你好，我是 <span class="grad">冯奕凯</span></h1>
+    <p class="sub">计算机科学与技术 · 东北大学秦皇岛分校 2026 级 · 网名 baishi314</p>
     <p>写代码、做自动化、折腾游戏模组 —— 把重复的事交给程序，把时间留给有意思的东西。</p>
     <div class="cta">
       <a class="btn btn-primary" href="#projects">查看项目</a>
@@ -145,11 +150,18 @@
     <h2 class="sec-title">关于我</h2>
     <p class="sec-sub">whoami</p>
     <p>
-      我是 <strong>baishi314</strong>，东北大学秦皇岛分校计算机专业大一学生。
+      我是 <strong>冯奕凯</strong>（网名 <strong>baishi314</strong>），<strong>东北大学秦皇岛分校</strong>计算机科学与技术专业 2026 级本科生，
+      就读于计算机与通信工程学院。
       喜欢用代码解决实际问题：从学习通的类人刷课脚本，到一键打包的自动化框架，再到一堆单文件 HTML 小教具。
       平时也玩 Minecraft Java 版模组开发，对生电整合包和红石科技挺上头。
       大学期间走<strong>计算机专业技术路线</strong>，不打算做家教，专注把工程能力练扎实。
     </p>
+    <ul class="facts">
+      <li><b>在读院校</b><span>东北大学秦皇岛分校（NEUQ）</span></li>
+      <li><b>年级专业</b><span>2026 级 · 计算机科学与技术</span></li>
+      <li><b>所在学院</b><span>计算机与通信工程学院</span></li>
+      <li><b>坐标</b><span>河北 · 秦皇岛</span></li>
+    </ul>
   </div>
 </section>
 
@@ -175,18 +187,33 @@
         </div>
       </div>
       <div class="skill-card">
-        <h3>游戏模组</h3>
+        <h3>游戏模组 & 生电</h3>
         <div class="tags">
           <span class="tag">Minecraft Java 1.21</span><span class="tag">Baritone</span>
-          <span class="tag">Meteor Client</span><span class="tag">Litematica</span>
-          <span class="tag">Carpet</span>
+          <span class="tag">Litematica</span><span class="tag">Tweakeroo</span>
+          <span class="tag">Item Scroller</span><span class="tag">Fabric</span>
+          <span class="tag">PCL2</span><span class="tag">红石 / 生电机械</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>AI & 效率工程</h3>
+        <div class="tags">
+          <span class="tag">LLM 应用集成</span><span class="tag">本地 AI 套件</span>
+          <span class="tag">Agent 工作流</span><span class="tag">批量任务调度</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>文档 & 演示</h3>
+        <div class="tags">
+          <span class="tag">WPS COM 自动化</span><span class="tag">PPTX 生成</span>
+          <span class="tag">PDF 处理</span><span class="tag">Markdown</span>
         </div>
       </div>
       <div class="skill-card">
         <h3>工程 & 部署</h3>
         <div class="tags">
-          <span class="tag">Git</span><span class="tag">GitHub Pages</span>
-          <span class="tag">单文件 HTML</span><span class="tag">本地 AI 套件</span>
+          <span class="tag">Git / GitHub</span><span class="tag">GitHub Pages</span>
+          <span class="tag">PyInstaller 打包</span><span class="tag">单文件 HTML</span>
         </div>
       </div>
     </div>
@@ -221,9 +248,18 @@
       </div>
       <div class="proj">
         <h3>DeepSeek Harness 本地套件</h3>
-        <p>本地 Web GUI 调用 deepseek-v4-pro，配套硅基流动中转，批量 AI 编程任务统一调度。</p>
-        <div class="ptags"><span>本地 AI</span><span>Web GUI</span></div>
-        <a class="more" href="http://127.0.0.1:3080" target="_blank" rel="noopener">本地访问 ↗</a>
+        <p>本地 Web GUI 调用 deepseek-v4-pro，配套多模型中转与批量 AI 编程任务统一调度。</p>
+        <div class="ptags"><span>本地 AI</span><span>Web GUI</span><span>Agent</span></div>
+      </div>
+      <div class="proj">
+        <h3>Minecraft 生电机械生成器</h3>
+        <p>「赤石科技」系列：用 Python 脚本按 LSB-first 位打包直接生成 .litematic 投影，把红石机械做成可一键贴的雕像式结构。</p>
+        <div class="ptags"><span>Python</span><span>Litematica</span><span>生电</span></div>
+      </div>
+      <div class="proj">
+        <h3>Office / 演示自动化</h3>
+        <p>基于 WPS COM 的文档批处理链路：docx 转 PDF、PPT 导 PNG、OOXML 手改与校验，把排版活交给脚本。</p>
+        <div class="ptags"><span>WPS COM</span><span>OOXML</span><span>自动化</span></div>
       </div>
     </div>
   </div>
@@ -247,12 +283,16 @@
         <div class="ic">🌐</div>
         <div class="meta"><b>主页</b><span>baishi314.github.io</span></div>
       </a>
+      <div class="contact">
+        <div class="ic">🎓</div>
+        <div class="meta"><b>学校</b><span>东北大学秦皇岛分校</span></div>
+      </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap">© 2026 baishi314 · 用 ❤️ 和代码搭建 · 托管于 GitHub Pages</div>
+  <div class="wrap">© 2026 冯奕凯 · baishi314 · 用 ❤️ 和代码搭建 · 托管于 GitHub Pages</div>
 </footer>
 
 <script>
