@@ -1,5 +1,277 @@
 ﻿<!DOCTYPE html>
-<html lang="zh">
-<head><meta charset="utf-8"><title>baishi314</title></head>
-<body><h1>你好，我是 baishi314</h1><p>个人主页搭建中…</p></body>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>baishi314 · 个人主页</title>
+<meta name="description" content="baishi314 的个人主页 — 计算机专业学生，编程 / 自动化 / 游戏模组开发。">
+<style>
+  :root{
+    --bg:#0a0e16; --bg-soft:#11161f; --card:rgba(255,255,255,.04);
+    --text:#e6edf3; --muted:#8b98a9; --primary:#5b8def; --accent:#7c5cff;
+    --border:rgba(255,255,255,.08); --shadow:0 10px 40px rgba(0,0,0,.35);
+  }
+  html[data-theme="light"]{
+    --bg:#f5f7fb; --bg-soft:#ffffff; --card:rgba(15,23,42,.03);
+    --text:#0d1b2a; --muted:#5b6b7f; --primary:#2f6bff; --accent:#6b3cff;
+    --border:rgba(15,23,42,.08); --shadow:0 10px 40px rgba(15,23,42,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.7;
+    -webkit-font-smoothing:antialiased;transition:background .3s,color .3s;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+
+  /* Nav */
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+    background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid var(--border)}
+  .nav-in{max-width:980px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-weight:700;letter-spacing:.5px;font-size:18px}
+  .logo span{color:var(--primary)}
+  .nav-links{display:flex;gap:22px;align-items:center}
+  .nav-links a{color:var(--muted);font-size:15px;transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  .theme-btn{cursor:pointer;background:var(--card);border:1px solid var(--border);
+    color:var(--text);width:38px;height:38px;border-radius:10px;font-size:16px;display:grid;place-items:center;transition:.2s}
+  .theme-btn:hover{border-color:var(--primary)}
+
+  /* Hero */
+  .hero{padding:90px 0 70px;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:-40% -10% auto;height:520px;z-index:-1;
+    background:radial-gradient(60% 60% at 50% 0%,color-mix(in srgb,var(--primary) 28%,transparent),transparent 70%),
+               radial-gradient(40% 40% at 80% 10%,color-mix(in srgb,var(--accent) 22%,transparent),transparent 70%);
+    filter:blur(20px)}
+  .avatar{width:96px;height:96px;border-radius:50%;margin:0 auto 22px;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    display:grid;place-items:center;font-size:34px;font-weight:700;color:#fff;
+    box-shadow:var(--shadow)}
+  .hero h1{font-size:42px;font-weight:800;letter-spacing:1px;margin-bottom:8px}
+  .hero .grad{background:linear-gradient(90deg,var(--primary),var(--accent));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--muted);font-size:18px;margin:10px auto 6px;max-width:560px}
+  .hero .sub{font-size:15px}
+  .cta{display:flex;gap:14px;justify-content:center;margin-top:30px;flex-wrap:wrap}
+  .btn{padding:12px 26px;border-radius:12px;font-weight:600;font-size:15px;transition:.2s;cursor:pointer;border:1px solid transparent}
+  .btn-primary{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px color-mix(in srgb,var(--primary) 40%,transparent)}
+  .btn-ghost{background:var(--card);border-color:var(--border);color:var(--text)}
+  .btn-ghost:hover{border-color:var(--primary)}
+
+  /* Sections */
+  section{padding:64px 0}
+  .sec-title{font-size:28px;font-weight:800;margin-bottom:6px}
+  .sec-sub{color:var(--muted);margin-bottom:34px;font-size:15px}
+  .divider{width:46px;height:4px;border-radius:4px;background:linear-gradient(90deg,var(--primary),var(--accent));margin-bottom:18px}
+
+  /* About */
+  .about p{color:var(--muted);font-size:16px;max-width:720px}
+  .about strong{color:var(--text)}
+
+  /* Skills */
+  .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .skill-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;transition:.2s}
+  .skill-card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--primary) 50%,transparent)}
+  .skill-card h3{font-size:16px;margin-bottom:10px;color:var(--primary)}
+  .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{font-size:13px;padding:4px 11px;border-radius:999px;background:color-mix(in srgb,var(--primary) 14%,transparent);color:var(--text);border:1px solid var(--border)}
+
+  /* Projects */
+  .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+  .proj{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;transition:.2s;display:flex;flex-direction:column}
+  .proj:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--primary) 55%,transparent);box-shadow:var(--shadow)}
+  .proj h3{font-size:18px;margin-bottom:8px}
+  .proj p{color:var(--muted);font-size:14px;flex:1}
+  .proj .ptags{margin-top:14px;display:flex;flex-wrap:wrap;gap:7px}
+  .proj .ptags span{font-size:12px;padding:3px 9px;border-radius:8px;background:color-mix(in srgb,var(--accent) 14%,transparent);border:1px solid var(--border)}
+  .proj a.more{margin-top:14px;font-size:14px;color:var(--primary);font-weight:600}
+
+  /* Contact */
+  .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+  .contact{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;display:flex;align-items:center;gap:14px;transition:.2s}
+  .contact:hover{border-color:var(--primary)}
+  .contact .ic{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:color-mix(in srgb,var(--primary) 16%,transparent);font-size:20px}
+  .contact .meta b{display:block;font-size:15px}
+  .contact .meta span{font-size:13px;color:var(--muted)}
+
+  footer{padding:40px 0;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--border)}
+
+  /* Reveal animation */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.show{opacity:1;transform:none}
+
+  @media(max-width:640px){
+    .hero h1{font-size:32px}
+    .nav-links{gap:14px}
+    .nav-links a:not(.theme-btn){display:none}
+    section{padding:48px 0}
+  }
+</style>
+</head>
+<body data-theme="dark">
+
+<nav>
+  <div class="nav-in">
+    <div class="logo">baishi314<span>.</span></div>
+    <div class="nav-links">
+      <a href="#about">关于</a>
+      <a href="#skills">技能</a>
+      <a href="#projects">项目</a>
+      <a href="#contact">联系</a>
+      <div class="theme-btn" id="themeBtn" title="切换主题">🌙</div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="avatar">b</div>
+    <h1>你好，我是 <span class="grad">baishi314</span></h1>
+    <p class="sub">计算机专业学生 · 东北大学秦皇岛分校</p>
+    <p>写代码、做自动化、折腾游戏模组 —— 把重复的事交给程序，把时间留给有意思的东西。</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#projects">查看项目</a>
+      <a class="btn btn-ghost" href="#contact">联系我</a>
+    </div>
+  </div>
+</header>
+
+<section id="about" class="about reveal">
+  <div class="wrap">
+    <div class="divider"></div>
+    <h2 class="sec-title">关于我</h2>
+    <p class="sec-sub">whoami</p>
+    <p>
+      我是 <strong>baishi314</strong>，东北大学秦皇岛分校计算机专业大一学生。
+      喜欢用代码解决实际问题：从学习通的类人刷课脚本，到一键打包的自动化框架，再到一堆单文件 HTML 小教具。
+      平时也玩 Minecraft Java 版模组开发，对生电整合包和红石科技挺上头。
+      大学期间走<strong>计算机专业技术路线</strong>，不打算做家教，专注把工程能力练扎实。
+    </p>
+  </div>
+</section>
+
+<section id="skills" class="reveal">
+  <div class="wrap">
+    <div class="divider"></div>
+    <h2 class="sec-title">技能栈</h2>
+    <p class="sec-sub">tools &amp; stacks</p>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <h3>编程语言</h3>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Java</span>
+          <span class="tag">JavaScript</span><span class="tag">TypeScript</span>
+          <span class="tag">HTML / CSS</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>自动化 & 工具</h3>
+        <div class="tags">
+          <span class="tag">Windows GUI 自动化</span><span class="tag">类人操作脚本</span>
+          <span class="tag">截图识别</span><span class="tag">Node.js</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>游戏模组</h3>
+        <div class="tags">
+          <span class="tag">Minecraft Java 1.21</span><span class="tag">Baritone</span>
+          <span class="tag">Meteor Client</span><span class="tag">Litematica</span>
+          <span class="tag">Carpet</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>工程 & 部署</h3>
+        <div class="tags">
+          <span class="tag">Git</span><span class="tag">GitHub Pages</span>
+          <span class="tag">单文件 HTML</span><span class="tag">本地 AI 套件</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="reveal">
+  <div class="wrap">
+    <div class="divider"></div>
+    <h2 class="sec-title">项目作品</h2>
+    <p class="sec-sub">things I've built</p>
+    <div class="proj-grid">
+      <div class="proj">
+        <h3>学习通类人刷课工程</h3>
+        <p>基于 Chrome profile + 类人鼠标键盘 + 截图视觉识别，推进课程视频与测验闭环，严格规避风控。</p>
+        <div class="ptags"><span>Python</span><span>自动化</span><span>图像识别</span></div>
+      </div>
+      <div class="proj">
+        <h3>auto-framework</h3>
+        <p>通用自动化框架，178+ 测试通过，打包为 8MB 单文件 exe，免 Python 运行时即可运行。</p>
+        <div class="ptags"><span>Node.js</span><span>PyInstaller</span><span>单文件</span></div>
+      </div>
+      <div class="proj">
+        <h3>单文件 HTML 教具系列</h3>
+        <p>空间向量 / 平面向量 / 复数 / 二次函数 / 抛体运动实验室，零依赖双击即开，深色主题自适应。</p>
+        <div class="ptags"><span>HTML</span><span>交互可视化</span><span>教学</span></div>
+      </div>
+      <div class="proj">
+        <h3>理科动画短视频框架</h3>
+        <p>science-anim-studio：结构化生成理科教学短视频脚本与画面，降低内容制作门槛。</p>
+        <div class="ptags"><span>内容生成</span><span>教学</span></div>
+      </div>
+      <div class="proj">
+        <h3>DeepSeek Harness 本地套件</h3>
+        <p>本地 Web GUI 调用 deepseek-v4-pro，配套硅基流动中转，批量 AI 编程任务统一调度。</p>
+        <div class="ptags"><span>本地 AI</span><span>Web GUI</span></div>
+        <a class="more" href="http://127.0.0.1:3080" target="_blank" rel="noopener">本地访问 ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="reveal">
+  <div class="wrap">
+    <div class="divider"></div>
+    <h2 class="sec-title">联系我</h2>
+    <p class="sec-sub">let's talk</p>
+    <div class="contact-grid">
+      <a class="contact" href="https://github.com/baishi314" target="_blank" rel="noopener">
+        <div class="ic">🐙</div>
+        <div class="meta"><b>GitHub</b><span>@baishi314</span></div>
+      </a>
+      <a class="contact" href="mailto:baishi3142396@163.com">
+        <div class="ic">✉️</div>
+        <div class="meta"><b>Email</b><span>baishi3142396@163.com</span></div>
+      </a>
+      <a class="contact" href="https://baishi314.github.io" target="_blank" rel="noopener">
+        <div class="ic">🌐</div>
+        <div class="meta"><b>主页</b><span>baishi314.github.io</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 baishi314 · 用 ❤️ 和代码搭建 · 托管于 GitHub Pages</div>
+</footer>
+
+<script>
+  // 主题切换（记忆偏好）
+  const root=document.documentElement,btn=document.getElementById('themeBtn');
+  const saved=localStorage.getItem('theme');
+  if(saved){root.setAttribute('data-theme',saved);btn.textContent=saved==='light'?'☀️':'🌙';}
+  btn.addEventListener('click',()=>{
+    const next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    btn.textContent=next==='light'?'☀️':'🌙';
+    localStorage.setItem('theme',next);
+  });
+
+  // 滚动揭示动画
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target);}});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
 </html>
