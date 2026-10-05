@@ -1,0 +1,84 @@
+name: Build and Deploy Sites
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'minimal-src/**'
+      - 'anime-src/**'
+      - 'index.html'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ---------- PaperMod (Hugo) ----------
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.167.0'
+          extended: true
+
+      - name: Build PaperMod site
+        if: hashFiles('minimal-src/hugo.toml') != ''
+        run: |
+          git clone --depth 1 https://github.com/adityatelange/hugo-PaperMod.git /tmp/PaperMod
+          mkdir -p minimal-src/themes
+          cp -r /tmp/PaperMod minimal-src/themes/PaperMod
+          rm -rf minimal-src/themes/PaperMod/.git
+          hugo --source minimal-src --destination "$GITHUB_WORKSPACE/public/minimal" --minify --gc
+
+      # ---------- Firefly (Astro) ----------
+      - name: Setup Node
+        if: hashFiles('anime-src/package.json') != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build Firefly site
+        if: hashFiles('anime-src/package.json') != ''
+        run: |
+          cd anime-src
+          npm install --no-audit --no-fund
+          npm run build
+          mkdir -p "$GITHUB_WORKSPACE/public/anime"
+          cp -r dist/* "$GITHUB_WORKSPACE/public/anime/"
+
+      # ---------- 根目录静态文件 ----------
+      - name: Copy root static files
+        run: |
+          mkdir -p public
+          if [ -f index.html ]; then cp index.html public/index.html; fi
+          if [ -f .nojekyll ]; then cp .nojekyll public/.nojekyll; else touch public/.nojekyll; fi
+          if [ -d assets ]; then cp -r assets public/; fi
+          ls -la public
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

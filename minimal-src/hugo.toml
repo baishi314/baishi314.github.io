@@ -1,0 +1,90 @@
+baseURL = "https://baishi314.github.io/minimal/"
+languageCode = "zh-cn"
+defaultContentLanguage = "zh-cn"
+locale = "zh-cn"
+title = "baishi314 · 极简笔记"
+theme = "PaperMod"
+
+enableRobotsTXT = true
+enableEmoji = true
+hasCJKLanguage = true
+paginate = 10
+
+[params]
+  env = "production"
+  description = "写代码、做自动化、折腾游戏模组。"
+  author = "baishi314"
+  DateFormat = "2006-01-02"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  TocOpen = false
+  comments = false
+  hidemeta = false
+  disableSpecial1stPost = false
+  disableScrollToTop = false
+
+  [params.homeInfoParams]
+    Title = "你好，我是 baishi314"
+    Content = "写代码、做自动化、折腾游戏模组。<br>把重复的事交给程序，把时间留给有意思的东西。"
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/baishi314"
+
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:baishi3142396@163.com"
+
+  [params.profileMode]
+    enabled = false
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    name = "文章"
+    url = "/posts/"
+    weight = 10
+  [[menu.main]]
+    identifier = "tags"
+    name = "标签"
+    url = "/tags/"
+    weight = 20
+  [[menu.main]]
+    identifier = "archives"
+    name = "归档"
+    url = "/archives/"
+    weight = 30
+  [[menu.main]]
+    identifier = "search"
+    name = "搜索"
+    url = "/search/"
+    weight = 40
+  [[menu.main]]
+    identifier = "home"
+    name = "回主页"
+    url = "https://baishi314.github.io/"
+    weight = 50
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    noClasses = false
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    style = "monokai"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
