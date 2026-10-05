@@ -24,9 +24,12 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: false
 
       # ---------- PaperMod (Hugo) ----------
       - name: Setup Hugo
@@ -37,11 +40,16 @@ jobs:
 
       - name: Build PaperMod site
         if: hashFiles('minimal-src/hugo.toml') != ''
+        timeout-minutes: 5
         run: |
-          git clone --depth 1 https://github.com/adityatelange/hugo-PaperMod.git /tmp/PaperMod
-          mkdir -p minimal-src/themes
-          cp -r /tmp/PaperMod minimal-src/themes/PaperMod
-          rm -rf minimal-src/themes/PaperMod/.git
+          # 主题已随仓库提交；若缺失则回退到在线拉取
+          if [ ! -f minimal-src/themes/PaperMod/theme.toml ]; then
+            echo "::warning::themes/PaperMod 缺失，回退到在线拉取"
+            git clone --depth 1 https://github.com/adityatelange/hugo-PaperMod.git /tmp/PaperMod
+            mkdir -p minimal-src/themes
+            cp -r /tmp/PaperMod minimal-src/themes/PaperMod
+            rm -rf minimal-src/themes/PaperMod/.git
+          fi
           hugo --source minimal-src --destination "$GITHUB_WORKSPACE/public/minimal" --minify --gc
 
       # ---------- Firefly (Astro) ----------
@@ -61,6 +69,7 @@ jobs:
 
       - name: Build Firefly site
         if: hashFiles('anime-src/package.json') != ''
+        timeout-minutes: 10
         env:
           BASE_PATH: /anime/
         run: |
@@ -72,11 +81,14 @@ jobs:
 
       # ---------- 根目录静态文件 ----------
       - name: Copy root static files
+        timeout-minutes: 2
         run: |
           mkdir -p public
           if [ -f index.html ]; then cp index.html public/index.html; fi
-          if [ -f .nojekyll ]; then cp .nojekyll public/.nojekyll; else touch public/.nojekyll; fi
+          if [ -f index.about.html ]; then cp index.about.html public/index.about.html; fi
+          touch public/.nojekyll
           if [ -d assets ]; then cp -r assets public/; fi
+          echo "--- public 结构 ---"
           ls -la public
 
       - name: Upload artifact
@@ -87,6 +99,7 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -94,3 +107,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        timeout-minutes: 8
