@@ -98,3 +98,12 @@ science-anim-studio：结构化生成理科教学短视频脚本与画面，降�
 - **GitHub** — [@baishi314](https://github.com/baishi314)
 - **Email** — [baishi3142396@163.com](mailto:baishi3142396@163.com)
 - **风格大厅** — [baishi314.github.io](https://baishi314.github.io/)
+
+---
+
+## 请我喝杯咖啡
+
+如果这里的内容帮到了你，可以扫下面的码。
+
+<img src="https://baishi314.github.io/anime/images/wechat-pay.png" alt="微信收款码" style="max-width:260px;border-radius:12px;">
+
