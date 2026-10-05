@@ -1,4 +1,4 @@
-
-public/
-resources/
+# 仓库根目录的 Hugo 构建产物（加前导斜杠，只匹配根级，不影响 anime-src/public 等子目录）
+/public/
+/resources/
 .hugo_build.lock
