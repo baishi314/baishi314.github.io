@@ -6,6 +6,7 @@ on:
     paths:
       - 'minimal-src/**'
       - 'anime-src/**'
+      - 'xinghui-src/**'
       - 'assets/**'
       - 'index.html'
       - 'index.about.html'
@@ -54,18 +55,20 @@ jobs:
 
       # ---------- Firefly (Astro) ----------
       - name: Setup pnpm
-        if: hashFiles('anime-src/package.json') != ''
+        if: hashFiles('anime-src/package.json') != '' || hashFiles('xinghui-src/package.json') != ''
         uses: pnpm/action-setup@v4
         with:
           version: 10
 
       - name: Setup Node
-        if: hashFiles('anime-src/package.json') != ''
+        if: hashFiles('anime-src/package.json') != '' || hashFiles('xinghui-src/package.json') != ''
         uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'pnpm'
-          cache-dependency-path: anime-src/pnpm-lock.yaml
+          cache-dependency-path: |
+            anime-src/pnpm-lock.yaml
+            xinghui-src/pnpm-lock.yaml
 
       - name: Build Firefly site
         if: hashFiles('anime-src/package.json') != ''
@@ -78,6 +81,24 @@ jobs:
           pnpm build
           mkdir -p "$GITHUB_WORKSPACE/public/anime"
           cp -r dist/* "$GITHUB_WORKSPACE/public/anime/"
+
+      # ---------- 星辉小屋 (Next.js 静态导出) ----------
+      - name: Build Xinghui site
+        if: hashFiles('xinghui-src/package.json') != ''
+        timeout-minutes: 10
+        env:
+          BASE_PATH: /xinghui
+          NEXT_TELEMETRY_DISABLED: '1'
+        run: |
+          cd xinghui-src
+          pnpm install --no-frozen-lockfile
+          pnpm build
+          mkdir -p "$GITHUB_WORKSPACE/public/xinghui"
+          cp -r out/* "$GITHUB_WORKSPACE/public/xinghui/"
+          # Next 静态导出会写 404.html，放到子路径下避免覆盖根站 404
+          rm -f "$GITHUB_WORKSPACE/public/404.html"
+          echo "--- xinghui 结构 ---"
+          ls -la "$GITHUB_WORKSPACE/public/xinghui" | head -20
 
       # ---------- 根目录静态文件 ----------
       - name: Copy root static files

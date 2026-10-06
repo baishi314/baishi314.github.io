@@ -54,8 +54,7 @@
   header p{color:var(--muted);font-size:17px;max-width:620px;margin:0 auto}
 
   /* 主题卡片 */
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;padding:34px 0 70px}
-  .card{
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;padding:34px 0 70px}  .card{
     background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;
     transition:transform .25s cubic-bezier(.2,.7,.3,1),border-color .25s,box-shadow .25s;
     display:flex;flex-direction:column;position:relative;
@@ -108,6 +107,7 @@
   <div class="wrap">
     <h1>同一个我，<span class="grad">几种写法</span></h1>
     <p>内容只有一份，皮囊各不相同。挑一个顺眼的进去逛。</p>
+    <p style="margin-top:8px;font-size:14px">目前已上架 <strong>3</strong> 套风格</p>
   </div>
 </header>
 
@@ -140,6 +140,21 @@
         <h3><span class="dot" style="background:#f472b6"></span>二次元小屋</h3>
         <p class="desc">卡片、看板娘、页面转场。花哨一点，但看着心情好。</p>
         <div class="chips"><span class="chip">Astro</span><span class="chip">Firefly</span><span class="chip">Waline 评论</span></div>
+        <span class="go">进入 →</span>
+      </div>
+    </a>
+
+    <!-- 星辉小屋 · Next.js -->
+    <a class="card" href="xinghui/" style="--sc:#a855f7">
+      <div class="shot">
+        <img src="assets/themes/xinghui.png" alt="星辉小屋 预览"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+        <div class="ph">星辉小屋<br><small>截图生成中</small></div>
+      </div>
+      <div class="body">
+        <h3><span class="dot" style="background:#a855f7"></span>星辉小屋</h3>
+        <p class="desc">个人面板式的首页，音乐播放器常驻，还能跟猫聊天。</p>
+        <div class="chips"><span class="chip">Next.js</span><span class="chip">React</span><span class="chip">在线音乐</span></div>
         <span class="go">进入 →</span>
       </div>
     </a>
