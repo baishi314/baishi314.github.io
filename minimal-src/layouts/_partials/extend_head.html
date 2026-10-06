@@ -1,0 +1,67 @@
+{{- /* 自定义 head 内容：置顶文章样式 + 阅读体验优化 */ -}}
+
+<style>
+  /* ===== 置顶文章：加金色边框 + PIN 徽章 ===== */
+  .post-entry.pinned-entry {
+    position: relative;
+    border: 1px solid color-mix(in srgb, var(--primary) 55%, transparent);
+    border-radius: 10px;
+    padding: 14px 16px 10px;
+    background: color-mix(in srgb, var(--primary) 6%, transparent);
+    margin-bottom: 16px;
+  }
+  .post-entry.pinned-entry::before {
+    content: "📌 置顶";
+    position: absolute;
+    top: -11px;
+    right: 14px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--primary);
+    color: var(--theme);
+    letter-spacing: .5px;
+  }
+  .post-entry.pinned-entry .entry-header h2 {
+    margin-top: 2px;
+  }
+
+  /* ===== 表格样式优化（资源导航页用得多） ===== */
+  .post-content table {
+    font-size: .94rem;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  .post-content table th,
+  .post-content table td {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .post-content table th {
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .post-content table tr:hover td {
+    background: color-mix(in srgb, var(--primary) 5%, transparent);
+  }
+  .post-content table a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: color-mix(in srgb, var(--primary) 60%, transparent);
+  }
+  .post-content table a:hover {
+    color: var(--primary);
+  }
+
+  /* ===== 引用块：让「这篇会一直置顶」这类提示更醒目 ===== */
+  .post-content blockquote {
+    border-inline-start: 4px solid var(--primary);
+    background: color-mix(in srgb, var(--primary) 7%, transparent);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 18px;
+  }
+</style>

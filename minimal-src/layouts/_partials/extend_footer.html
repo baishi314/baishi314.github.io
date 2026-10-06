@@ -1,0 +1,23 @@
+{{- /* 自定义 footer 内容：自动给置顶文章加样式类 */ -}}
+
+<script>
+  (function () {
+    // 识别置顶文章：标题里带 🔗 或 📌 的，或链接指向 /posts/resources/
+    var PIN_HINT = ["🔗", "📌"];
+    var PIN_SLUGS = ["resources"];
+
+    document.querySelectorAll(".post-entry").forEach(function (el) {
+      var h2 = el.querySelector(".entry-header h2");
+      var link = el.querySelector("a.entry-link");
+      var title = h2 ? h2.textContent.trim() : "";
+      var href = link ? link.getAttribute("href") || "" : "";
+
+      var byTitle = PIN_HINT.some(function (m) { return title.indexOf(m) !== -1; });
+      var bySlug = PIN_SLUGS.some(function (s) { return href.indexOf("/posts/" + s + "/") !== -1; });
+
+      if (byTitle || bySlug) {
+        el.classList.add("pinned-entry");
+      }
+    });
+  })();
+</script>
