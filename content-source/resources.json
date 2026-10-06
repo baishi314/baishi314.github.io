@@ -1,0 +1,141 @@
+{
+  "title": "🔗 常用资源导航",
+  "date": "2026-10-06",
+  "summary": "把常用的学习网站、工具、资料都收在这里了，点一下就能进。",
+  "intro": "**这篇会一直置顶。** 找不到东西的时候，先来这里翻。",
+  "outro": "**最后更新：2026-10-06**",
+  "sections": [
+    {
+      "emoji": "📚",
+      "name": "编程 & 计算机",
+      "rows": [
+        [
+          "CS 自学指南",
+          "计算机自学路线图，从入门到进阶全都有",
+          "https://csdiy.wiki/",
+          "csdiy.wiki"
+        ],
+        [
+          "CS 61A",
+          "伯克利经典编程入门课（Python）",
+          "https://cs61a.org/",
+          "cs61a.org"
+        ],
+        [
+          "算法竞赛 Wiki",
+          "竞赛知识汇总，OI/ACM 都能用",
+          "https://ac-wiki.org/",
+          "ac-wiki.org"
+        ],
+        [
+          "你缺计",
+          "计算机学习资料合集",
+          "https://www.criwits.top/missing/",
+          "criwits.top"
+        ]
+      ]
+    },
+    {
+      "emoji": "🎓",
+      "name": "课程 & 考试",
+      "rows": [
+        [
+          "高数（B站）",
+          "高等数学系统课",
+          "https://www.bilibili.com/video/BV1xhmnYFEir",
+          "去 B站看"
+        ],
+        [
+          "四六级课程",
+          "备考课程合集",
+          "https://www.bilibili.com/video/BV1ZzUYByEKi/",
+          "去 B站看"
+        ],
+        [
+          "四六级刷题",
+          "在线做题",
+          "https://examcrafts.com/cet4",
+          "examcrafts.com"
+        ],
+        [
+          "蓝桥杯",
+          "竞赛报名 & 练习",
+          "https://www.lanqiao.cn/",
+          "lanqiao.cn"
+        ]
+      ]
+    },
+    {
+      "emoji": "🛠️",
+      "name": "好用的工具",
+      "rows": [
+        [
+          "LabEx",
+          "在线练 Linux，不用装虚拟机",
+          "https://labex.io/zh/learn",
+          "labex.io"
+        ],
+        [
+          "打字鸭",
+          "练打字速度",
+          "https://daziya.com/",
+          "daziya.com"
+        ],
+        [
+          "AI PPT",
+          "自动生成 PPT",
+          "https://www.aippt.cn/",
+          "aippt.cn"
+        ],
+        [
+          "Office 工具",
+          "办公效率工具集",
+          "https://www.abcdoffice.com/zh-cn/",
+          "abcdoffice.com"
+        ],
+        [
+          "图片工具",
+          "在线处理图片",
+          "https://picdone.com/zh/",
+          "picdone.com"
+        ],
+        [
+          "易简历",
+          "快速做简历",
+          "https://toolxx.cn/",
+          "toolxx.cn"
+        ],
+        [
+          "触手 AI",
+          "AI 绘画/生成",
+          "https://www.chushou.art/",
+          "chushou.art"
+        ]
+      ]
+    },
+    {
+      "emoji": "📖",
+      "name": "找书 & 资料",
+      "rows": [
+        [
+          "Z-Library",
+          "电子书下载",
+          "https://z-library.sk/",
+          "z-library.sk"
+        ]
+      ]
+    },
+    {
+      "emoji": "🎬",
+      "name": "放松一下",
+      "rows": [
+        [
+          "大明王朝 1566",
+          "国产历史剧天花板",
+          "https://www.bilibili.com/video/BV1Ue4y1w7bk/",
+          "去 B站看"
+        ]
+      ]
+    }
+  ]
+}

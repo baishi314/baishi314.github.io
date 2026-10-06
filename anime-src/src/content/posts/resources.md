@@ -16,19 +16,18 @@ comment: true
 ## 📚 编程 & 计算机
 
 | 网站 | 是什么 | 直接进 |
-| --- | --- | --- |
+|---|---|---|
 | **CS 自学指南** | 计算机自学路线图，从入门到进阶全都有 | [csdiy.wiki](https://csdiy.wiki/) |
 | **CS 61A** | 伯克利经典编程入门课（Python） | [cs61a.org](https://cs61a.org/) |
 | **算法竞赛 Wiki** | 竞赛知识汇总，OI/ACM 都能用 | [ac-wiki.org](https://ac-wiki.org/) |
 | **你缺计** | 计算机学习资料合集 | [criwits.top](https://www.criwits.top/missing/) |
-| **东秦计科手册** | 本校计算机专业学习指南 | [manual.shettydev.com](https://manual.shettydev.com/loongson/) |
 
 ---
 
 ## 🎓 课程 & 考试
 
 | 网站 | 是什么 | 直接进 |
-| --- | --- | --- |
+|---|---|---|
 | **高数（B站）** | 高等数学系统课 | [去 B站看](https://www.bilibili.com/video/BV1xhmnYFEir) |
 | **四六级课程** | 备考课程合集 | [去 B站看](https://www.bilibili.com/video/BV1ZzUYByEKi/) |
 | **四六级刷题** | 在线做题 | [examcrafts.com](https://examcrafts.com/cet4) |
@@ -38,39 +37,30 @@ comment: true
 
 ## 🛠️ 好用的工具
 
-| 工具 | 干什么用 | 直接进 |
-| --- | --- | --- |
+| 网站 | 是什么 | 直接进 |
+|---|---|---|
 | **LabEx** | 在线练 Linux，不用装虚拟机 | [labex.io](https://labex.io/zh/learn) |
 | **打字鸭** | 练打字速度 | [daziya.com](https://daziya.com/) |
 | **AI PPT** | 自动生成 PPT | [aippt.cn](https://www.aippt.cn/) |
 | **Office 工具** | 办公效率工具集 | [abcdoffice.com](https://www.abcdoffice.com/zh-cn/) |
 | **图片工具** | 在线处理图片 | [picdone.com](https://picdone.com/zh/) |
 | **易简历** | 快速做简历 | [toolxx.cn](https://toolxx.cn/) |
-| **触手 AI** | AI 绘画 / 生成 | [chushou.art](https://www.chushou.art/) |
+| **触手 AI** | AI 绘画/生成 | [chushou.art](https://www.chushou.art/) |
 
 ---
 
 ## 📖 找书 & 资料
 
 | 网站 | 是什么 | 直接进 |
-| --- | --- | --- |
+|---|---|---|
 | **Z-Library** | 电子书下载 | [z-library.sk](https://z-library.sk/) |
-
----
-
-## 🏫 校内（自己人看）
-
-| 网站 | 是什么 | 直接进 |
-| --- | --- | --- |
-| **东秦生存手册** | 学长写的避坑指南，新生必看 | [点这里](https://int0thepain.github.io/dongqin-survival-guide/) |
-| **双创中心** | 竞赛信息、创新创业 | [cxcyzx.neuq.edu.cn](https://cxcyzx.neuq.edu.cn/index.htm) |
 
 ---
 
 ## 🎬 放松一下
 
-| 内容 | 是什么 | 直接进 |
-| --- | --- | --- |
+| 网站 | 是什么 | 直接进 |
+|---|---|---|
 | **大明王朝 1566** | 国产历史剧天花板 | [去 B站看](https://www.bilibili.com/video/BV1Ue4y1w7bk/) |
 
 ---

@@ -112,4 +112,3 @@ science-anim-studio：结构化生成理科教学短视频脚本与画面，降�
 如果这里的内容帮到了你，可以扫下面的码。
 
 <img src="https://baishi314.github.io/minimal/images/wechat-pay.png" alt="微信收款码" style="max-width:260px;border-radius:12px;">
-

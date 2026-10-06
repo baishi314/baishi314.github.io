@@ -1,0 +1,103 @@
+{
+  "handle": "baishi314",
+  "bio": "写代码、看动画、偶尔打游戏的一个人。",
+  "intro": "我是 **baishi314**，一个喜欢折腾的计算机学生。",
+  "intro2": "喜欢用代码解决实际问题：从自动化脚本，到一键打包的小工具，再到一堆单文件 HTML 小教具。平时也玩 Minecraft Java 版模组开发，对生电整合包和红石科技挺上头。",
+  "route": "走**计算机专业技术路线**，专注把工程能力练扎实。",
+  "facts": [
+    [
+      "在做什么",
+      "写代码 / 做自动化 / 折腾模组"
+    ],
+    [
+      "主要语言",
+      "Python · Java · JavaScript · TypeScript"
+    ],
+    [
+      "在玩什么",
+      "Minecraft Java 1.21 · Fabric"
+    ],
+    [
+      "联系方式",
+      "见下方"
+    ]
+  ],
+  "skills": [
+    [
+      "编程语言",
+      [
+        "Python",
+        "Java",
+        "JavaScript",
+        "TypeScript",
+        "HTML / CSS"
+      ]
+    ],
+    [
+      "自动化 & 工具",
+      [
+        "Windows GUI 自动化",
+        "类人操作脚本",
+        "截图识别",
+        "Node.js"
+      ]
+    ],
+    [
+      "游戏模组 & 生电",
+      [
+        "Minecraft Java 1.21",
+        "Baritone",
+        "Litematica",
+        "Tweakeroo",
+        "Item Scroller",
+        "Fabric",
+        "PCL2",
+        "红石 / 生电机械"
+      ]
+    ],
+    [
+      "AI & 效率工程",
+      [
+        "LLM 应用集成",
+        "本地 AI 套件",
+        "Agent 工作流",
+        "批量任务调度"
+      ]
+    ],
+    [
+      "文档 & 演示",
+      [
+        "WPS COM 自动化",
+        "PPTX 生成",
+        "PDF 处理",
+        "Markdown"
+      ]
+    ],
+    [
+      "工程 & 部署",
+      [
+        "Git / GitHub",
+        "GitHub Pages",
+        "PyInstaller 打包",
+        "单文件 HTML"
+      ]
+    ]
+  ],
+  "contact": [
+    [
+      "GitHub",
+      "@baishi314",
+      "https://github.com/baishi314"
+    ],
+    [
+      "Email",
+      "baishi3142396@163.com",
+      "mailto:baishi3142396@163.com"
+    ],
+    [
+      "风格大厅",
+      "baishi314.github.io",
+      "https://baishi314.github.io/"
+    ]
+  ]
+}
