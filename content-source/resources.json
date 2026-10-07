@@ -126,6 +126,18 @@
       ]
     },
     {
+      "emoji": "🏫",
+      "name": "校内",
+      "rows": [
+        [
+          "东秦计科人生存手册",
+          "计科学习指南：Git、Vim、算法入门、保研、龙芯实验室招新",
+          "https://manual.shettydev.com/loongson/",
+          "manual.shettydev.com"
+        ]
+      ]
+    },
+    {
       "emoji": "🎬",
       "name": "放松一下",
       "rows": [

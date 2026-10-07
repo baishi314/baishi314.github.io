@@ -55,6 +55,14 @@ pinned: true
 
 ---
 
+## 🏫 校内
+
+| 网站 | 是什么 | 直接进 |
+|---|---|---|
+| **东秦计科人生存手册** | 计科学习指南：Git、Vim、算法入门、保研、龙芯实验室招新 | [manual.shettydev.com](https://manual.shettydev.com/loongson/) |
+
+---
+
 ## 🎬 放松一下
 
 | 网站 | 是什么 | 直接进 |
