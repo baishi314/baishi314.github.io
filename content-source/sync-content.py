@@ -52,6 +52,173 @@ def load(name):
         return json.load(f)
 
 
+# ------------------------------------------------------------------
+# 文章：单一源 content-source/posts/*.md
+# 作者只写一份统一的 frontmatter，这里翻译成三站各自的格式
+# ------------------------------------------------------------------
+POSTS_DIR = os.path.join(SRC, "posts")
+
+# 统一 frontmatter 字段：
+#   title / date / tags / category / summary / pinned / draft / cover
+_UNQUOTE = re.compile(r'^["\'](.*)["\']$')
+
+
+def _parse_scalar(v):
+    v = v.strip()
+    m = _UNQUOTE.match(v)
+    if m:
+        return m.group(1)
+    if v.lower() in ("true", "false"):
+        return v.lower() == "true"
+    return v
+
+
+def _parse_list(v):
+    v = v.strip()
+    if v.startswith("[") and v.endswith("]"):
+        v = v[1:-1]
+    if not v.strip():
+        return []
+    parts = re.split(r",(?![^\[]*\])", v)
+    out = []
+    for p in parts:
+        p = _parse_scalar(p.strip())
+        if p != "":
+            out.append(str(p))
+    return out
+
+
+def parse_post(path):
+    """解析统一格式的文章，返回 (meta dict, body str)"""
+    raw = open(path, encoding="utf-8").read()
+    if not raw.startswith("---"):
+        return {}, raw
+    end = raw.find("\n---", 3)
+    if end == -1:
+        return {}, raw
+    fm = raw[3:end].strip("\n")
+    body = raw[end + 4:].lstrip("\n")
+
+    meta = {}
+    for line in fm.splitlines():
+        line = line.rstrip()
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        if ":" not in line:
+            continue
+        k, v = line.split(":", 1)
+        k = k.strip()
+        v = v.strip()
+        if k in ("tags", "categories"):
+            meta[k] = _parse_list(v)
+        else:
+            meta[k] = _parse_scalar(v)
+    # 归一化
+    meta.setdefault("title", "无标题")
+    meta.setdefault("tags", [])
+    meta.setdefault("category", "")
+    meta.setdefault("summary", "")
+    meta.setdefault("pinned", False)
+    meta.setdefault("draft", False)
+    meta.setdefault("cover", "")
+    meta.setdefault("date", "2026-01-01 00:00:00")
+    return meta, body
+
+
+def load_posts():
+    """读 content-source/posts/*.md，按日期倒序"""
+    if not os.path.isdir(POSTS_DIR):
+        return []
+    out = []
+    for fn in sorted(os.listdir(POSTS_DIR)):
+        if not fn.endswith((".md", ".mdx")):
+            continue
+        meta, body = parse_post(os.path.join(POSTS_DIR, fn))
+        meta["slug"] = fn.rsplit(".", 1)[0]
+        meta["body"] = body
+        out.append(meta)
+    out.sort(key=lambda m: str(m["date"]), reverse=True)
+    return out
+
+
+def _yaml_date(d):
+    """2026-10-08 10:00:00 -> (quoted str, date-only str)"""
+    s = str(d).strip()
+    dateonly = s.split(" ")[0]
+    return s, dateonly
+
+
+def _yaml_str(s):
+    s = str(s).replace('"', '\\"')
+    return f'"{s}"'
+
+
+# ---------------- 三站 frontmatter 生成 ----------------
+
+def fm_minimal(m):
+    """Hugo / PaperMod"""
+    s, dateonly = _yaml_date(m["date"])
+    tags = m["tags"] or []
+    tag_s = "[" + ", ".join(_yaml_str(t) for t in tags) + "]"
+    cats = [m["category"]] if m["category"] else []
+    cat_s = "[" + ", ".join(_yaml_str(c) for c in cats) + "]"
+    lines = [
+        "---",
+        f"title: {_yaml_str(m['title'])}",
+        f"date: {dateonly}",
+        "draft: false",
+        f"tags: {tag_s}",
+        f"categories: {cat_s}",
+    ]
+    if m["summary"]:
+        lines.append(f"summary: {_yaml_str(m['summary'])}")
+    if m["pinned"]:
+        lines += ["weight: 1", "pin: true"]
+    lines += ["---", ""]
+    return "\n".join(lines)
+
+
+def fm_anime(m):
+    """Astro / Firefly"""
+    lines = [
+        "---",
+        f"title: {m['title']}",
+        f"published: {m['date']}",
+    ]
+    if m["summary"]:
+        lines.append(f"description: {m['summary']}")
+    if m["cover"]:
+        lines.append(f"image: {m['cover']}")
+    tags = m["tags"] or []
+    lines.append("tags: [" + ", ".join(str(t) for t in tags) + "]")
+    if m["category"]:
+        lines.append(f"category: {m['category']}")
+    lines.append("draft: false")
+    if m["pinned"]:
+        lines.append("pinned: true")
+    lines.append("comment: true")
+    lines += ["---", ""]
+    return "\n".join(lines)
+
+
+def fm_xinghui(m):
+    """Next.js / 星辉小屋"""
+    lines = [
+        "---",
+        f"title: {_yaml_str(m['title'])}",
+        f'date: "{m["date"]}"',
+    ]
+    if m["summary"]:
+        lines.append(f"description: {_yaml_str(m['summary'])}")
+    lines.append(f'cover: "{m["cover"] or "/cover-default.svg"}"')
+    tags = m["tags"] or []
+    lines.append("tags: [" + ", ".join(_yaml_str(t) for t in tags) + "]")
+    if m["pinned"]:
+        lines.append("pinned: true")
+    lines += ["---", ""]
+    return "\n".join(lines)
+
+
 def write(path, text):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8", newline="\n") as f:
@@ -179,6 +346,9 @@ def sync_minimal(p, r, projs, fl):
     )
     write(os.path.join(base, "posts", "hello-world.md"), fm + render_hello(fl))
 
+    # 用户文章（content-source/posts/）
+    sync_theme_posts("minimal", os.path.join(base, "posts"), fm_minimal)
+
 
 def render_hello(fl):
     return (
@@ -195,6 +365,50 @@ def render_hello(fl):
         "内容是一样的，只是看着心情不同。从[风格大厅](https://baishi314.github.io/)都能进。\n\n"
         "慢慢写吧。\n"
     )
+
+
+# ------------------------------------------------------------------
+# 通用文章同步：把 content-source/posts/*.md 渲染进某个主题的 posts 目录
+# ------------------------------------------------------------------
+# 这三篇由脚本按主题生成，不由 content-source/posts/ 管理，避免冲突
+GENERATED_SLUGS = {"resources", "hello-world", "welcome"}
+
+
+def sync_theme_posts(theme, posts_dir, fm_fn, extra_skip=()):
+    """
+    把 content-source/posts/ 的文章写进目标目录。
+    theme: 站点标识（仅用于日志）
+    posts_dir: 目标 posts 目录
+    fm_fn: frontmatter 生成函数
+    """
+    os.makedirs(posts_dir, exist_ok=True)
+    posts = load_posts()
+    if not posts:
+        print(f"  (posts 源为空)")
+        return 0
+
+    written = []
+    for m in posts:
+        if m["slug"] in GENERATED_SLUGS or m["slug"] in extra_skip:
+            continue
+        if m.get("draft") is True:
+            rm(os.path.join(posts_dir, m["slug"] + ".md"))
+            continue
+        write(os.path.join(posts_dir, m["slug"] + ".md"),
+              fm_fn(m) + m["body"].rstrip() + "\n")
+        written.append(m["slug"])
+
+    # 清掉源里已删除的文章（只清脚本管的那些）
+    keep = set(written) | set(GENERATED_SLUGS) | set(extra_skip)
+    for fn in os.listdir(posts_dir):
+        if not fn.endswith((".md", ".mdx")):
+            continue
+        slug = fn.rsplit(".", 1)[0]
+        if slug not in keep:
+            rm(os.path.join(posts_dir, fn))
+
+    print(f"  posts: {len(written)} 篇 -> {os.path.relpath(posts_dir, ROOT)}")
+    return len(written)
 
 
 # ------------------------------------------------------------------
@@ -239,6 +453,10 @@ def sync_anime(p, r, projs, fl):
         + render_hello(fl)
     )
     write(os.path.join(base, "posts", "welcome.md"), fm + body)
+
+    # 用户文章（content-source/posts/）
+    sync_theme_posts("anime", os.path.join(base, "posts"), fm_anime,
+                     extra_skip=("welcome",))
 
     # 项目集合（Firefly 的 projects 页面读这里）
     proj_dir = os.path.join(base, "projects")
@@ -302,6 +520,9 @@ def sync_xinghui(p, r, projs, fl):
         '---\n\n'
     )
     write(os.path.join(base, "posts", "hello-world.md"), fm + render_hello(fl))
+
+    # 用户文章（content-source/posts/）
+    sync_theme_posts("xinghui", os.path.join(base, "posts"), fm_xinghui)
 
     # 项目页（从 projects.json 生成 TS）
     lines = [
