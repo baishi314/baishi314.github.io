@@ -46,12 +46,12 @@ export const siteConfig = {
   // 全局背景弹幕
   danmakuList: ["在干嘛呢？", "有蛋壳吗？", "前方高能反应！", "代码写完了吗", "今天背单词了吗？", "Hello World", "写算法中", "睡大觉中", "到底在干嘛？"],
 
-  // 评论区：Giscus（无需后端）。填入仓库与讨论区 ID 后即可启用
+  // 评论区：Giscus（无需后端）。评论存储在本仓库的 Discussions 中
   giscusConfig: {
-    repo: "",
-    repoId: "",
+    repo: "baishi314/baishi314.github.io",
+    repoId: "R_kgDOUyffhw",
     category: "Announcements",
-    categoryId: "",
+    categoryId: "DIC_kwDOUyffh84DHYz9",
   },
 
   buildDate: "2026-10-05T00:00:00",

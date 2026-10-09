@@ -9,7 +9,7 @@ export default function LabComments({ pageId }: { pageId?: string }) {
   const cfg = (siteConfig as any).giscusConfig;
 
   useEffect(() => {
-    if (!cfg?.repo || !cfg?.repoId || !containerRef.current) return;
+    if (!cfg?.repo || !cfg?.repoId || !cfg?.categoryId || !containerRef.current) return;
     containerRef.current.innerHTML = '';
 
     const s = document.createElement('script');

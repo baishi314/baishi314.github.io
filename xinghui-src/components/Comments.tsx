@@ -13,7 +13,7 @@ export default function Comments() {
   const cfg = (siteConfig as any).giscusConfig;
 
   useEffect(() => {
-    if (!cfg?.repo || !cfg?.repoId) return;
+    if (!cfg?.repo || !cfg?.repoId || !cfg?.categoryId) return;
     if (!containerRef.current) return;
 
     containerRef.current.innerHTML = '';
@@ -48,7 +48,7 @@ export default function Comments() {
 
       <div ref={containerRef} className="relative z-10 pt-2" />
 
-      {!cfg?.repo && (
+      {!cfg?.categoryId && (
         <p className="relative z-10 text-sm text-slate-500 dark:text-slate-400">
           评论区未启用（配置 siteConfig.giscusConfig 后即可显示）
         </p>
