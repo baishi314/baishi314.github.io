@@ -277,18 +277,45 @@ def render_about_qr(theme):
     )
 
 
+def count_rows(r):
+    """统计全部链接条数（兼容平铺 section 与 groups 分组 section）"""
+    n = 0
+    for s in r["sections"]:
+        if "groups" in s:
+            n += sum(len(g["rows"]) for g in s["groups"])
+        else:
+            n += len(s["rows"])
+    return n
+
+
+def _render_rows(rows):
+    """渲染一张资源表格（三列：网站 / 是什么 / 直接进）"""
+    out = ["| 网站 | 是什么 | 直接进 |", "|---|---|---|"]
+    for name, desc, url, label in rows:
+        out.append(f"| **{name}** | {desc} | [{label}]({url}) |")
+    out.append("")
+    return out
+
+
 def render_resources(r, theme):
-    """资源导航正文"""
+    """资源导航正文
+
+    一个 section 有两种写法：
+      - 平铺：{"emoji": ..., "name": ..., "rows": [...]}
+      - 分组：{"emoji": ..., "name": ..., "groups": [{"name": ..., "rows": [...]}, ...]}
+    分组用于顶层分类内部还需再分小类的情况（如「编程语言 → C++ → STL 专题」）。
+    """
     out = []
     out.append("> " + r["intro"] + "\n")
     out.append("---\n")
     for sec in r["sections"]:
         out.append(f"## {sec['emoji']} {sec['name']}\n")
-        out.append("| 网站 | 是什么 | 直接进 |")
-        out.append("|---|---|---|")
-        for name, desc, url, label in sec["rows"]:
-            out.append(f"| **{name}** | {desc} | [{label}]({url}) |")
-        out.append("")
+        if "groups" in sec:
+            for g in sec["groups"]:
+                out.append(f"### {g['name']}\n")
+                out.extend(_render_rows(g["rows"]))
+        else:
+            out.extend(_render_rows(sec["rows"]))
         out.append("---\n")
     out.append(r["outro"] + "\n")
     return "\n".join(out)
@@ -572,7 +599,7 @@ def main():
     print("内容源：", SRC)
     print(f"  profile.json    {len(p)} 字段")
     print(f"  projects.json   {len(projs)} 个项目")
-    print(f"  resources.json  {sum(len(s['rows']) for s in r['sections'])} 条链接，"
+    print(f"  resources.json  {count_rows(r)} 条链接，"
           f"{len(r['sections'])} 个分类")
     print("=" * 60)
 

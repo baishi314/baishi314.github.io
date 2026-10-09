@@ -38,20 +38,45 @@ pin: true
 
 ## 💻 编程语言
 
+### C 语言
+
 | 网站 | 是什么 | 直接进 |
 |---|---|---|
 | **菜鸟教程 C 语言** | 查语法用的网站，从变量、循环到指针都有例子。不用通读，写代码时忘了什么查什么 | [runoob.com](https://www.runoob.com/cprogramming/c-tutorial.html) |
 | **C 语言中文网** | 比菜鸟更细的 C 语言教程，二十多万字，配合课程查漏补缺正合适。免费看，有广告 | [biancheng.net](https://c.biancheng.net/c/) |
 | **翁恺《C 语言程序设计》** | 浙江大学翁恺老师的名课，讲得清楚、节奏舒服，很多人大学第一门编程课就看这个 | [去 MOOC 搜课名](https://www.icourse163.org/) |
 | **PTA 程序设计平台** | 很多学校的程序实验就是在这里交的。题目偏基础，适合边上课边刷 | [pintia.cn](https://pintia.cn/) |
+
+### C++
+
+| 网站 | 是什么 | 直接进 |
+|---|---|---|
 | **菜鸟教程 C++** | C++ 入门，重点讲清楚类和对象——这是从 C 跨到 C++ 最难的一步 | [runoob.com](https://www.runoob.com/cplusplus/cpp-tutorial.html) |
 | **cplusplus.com** | 英文的 C++ 教程和标准库手册，写 C++ 时查某个容器、某个函数怎么用，最权威 | [cplusplus.com](https://cplusplus.com/) |
 | **C++ 中文网** | C++ 专题式教程，按知识点一块块讲，适合配合课程复习 | [biancheng.net](https://c.biancheng.net/cplus/) |
 | **黑马程序员 C++** | B 站 4700 万播放的 C++ 课，从语法一路讲到能做项目。零基础跟着敲完基本能独立写东西 | [去 B 站看](https://www.bilibili.com/video/BV1et411b73Z/) |
+
+### C++ · STL 与算法竞赛
+
+| 网站 | 是什么 | 直接进 |
+|---|---|---|
+| **算法竞赛常用 STL** | 武汉理工 ACM 集训队的新生课，2 小时把 vector、map、set、queue、stack 这些刷题常用的容器过一遍。收藏数是点赞数的两倍，很多人当手册反复翻。语法学完、开始刷题时看这个 | [去 B 站看](https://www.bilibili.com/video/BV1L8411y7th/) |
+| **C++ 标准库速查** | STL 全部容器的官方参考页：每个容器有哪些成员函数、复杂度多少，写得最全。写代码时忘了某个函数怎么用，来这查 | [cplusplus.com](https://cplusplus.com/reference/stl/) |
+| **STL 基础教程** | 从 vector、string 开始一步步讲容器怎么用，配合代码演示。刚开始接触 STL、还没到刷题阶段的话，先看这个打底 | [runoob.com](https://www.runoob.com/cplusplus/cpp-stl-tutorial.html) |
+
+### Java
+
+| 网站 | 是什么 | 直接进 |
+|---|---|---|
 | **廖雪峰 Java 教程** | 中文 Java 教程里最系统的之一，免费、能从头读到尾。适合零基础按顺序啃 | [liaoxuefeng.com](https://liaoxuefeng.com/books/java/introduction/index.html) |
 | **Java 官方文档** | Oracle 官方 API 文档。写 Java 时遇到不认识的类，来这查官方定义 | [docs.oracle.com](https://docs.oracle.com/en/java/) |
 | **黑马程序员 Java** | 2700 万播放的 Java 入门课，讲到集合、IO、多线程，还带着做力扣题 | [去 B 站看](https://www.bilibili.com/video/BV17F411T7Ao/) |
 | **尚硅谷 Java** | 另一个主流 Java 入门课，章节划分清晰，适合想按部就班学的人 | [去 B 站看](https://www.bilibili.com/video/BV1YT4y1H7YM/) |
+
+### Python
+
+| 网站 | 是什么 | 直接进 |
+|---|---|---|
 | **廖雪峰 Python 教程** | Python 教程，从基础语法讲到常用库，内容免费。很多人第一门语言就学的这个 | [liaoxuefeng.com](https://liaoxuefeng.com/books/python/introduction/index.html) |
 | **Python 官方中文文档** | Python 官方文档的中文版。查标准库、查某个函数，官方说了算 | [docs.python.org](https://docs.python.org/zh-cn/3/) |
 | **黑马程序员 Python** | 2500 万播放，8 天从零基础到会写完整项目。想快速上手 Python 看这套 | [去 B 站看](https://www.bilibili.com/video/BV1qW4y1a7fU/) |
