@@ -131,6 +131,18 @@ const managerConfigStr = JSON.stringify({
     }
 
     // ── Meting fetch ─────────────────────────────────────────
+    // 注意：fetch 对"只连不答"的镜像会永久挂起，必须自带超时，
+    // 否则整个播放器会卡在加载态出不来。
+    async function fetchWithTimeout(url, ms) {
+        var ctl = new AbortController();
+        var timer = setTimeout(function () { ctl.abort(); }, ms);
+        try {
+            return await fetch(url, { signal: ctl.signal });
+        } finally {
+            clearTimeout(timer);
+        }
+    }
+
     async function fetchMetingData() {
         if (!config.meting) return;
         var m = config.meting;
@@ -147,11 +159,11 @@ const managerConfigStr = JSON.stringify({
                     .replace(':r', Math.random());
                 if (m.auth) fetchUrl += '&auth=' + m.auth;
 
-                var res = await fetch(fetchUrl);
+                var res = await fetchWithTimeout(fetchUrl, 8000);
                 if (!res.ok) throw new Error('HTTP ' + res.status);
                 var data = await res.json();
 
-                if (Array.isArray(data) && data.length > 0) {
+                if (Array.isArray(data) && data.length > 0 && !data[0].error) {
                     state.playlist = data.map(function (item) {
                         return {
                             name: item.title || item.name || 'Unknown',

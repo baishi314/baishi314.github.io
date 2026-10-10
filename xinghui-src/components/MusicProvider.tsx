@@ -85,21 +85,36 @@ export function MusicProvider({ children }: { children: ReactNode }) {
     const fetchMusicData = async () => {
       try {
         // 静态站点：直接在浏览器端调用 Meting 公开 API（无需后端）
+        // 注意：moeyao 镜像返回 {"error":"unknown type"}（type 参数格式不同），已移除
         const APIs = [
           'https://api.injahow.cn/meting/?server=netease&type=song&id=',
+          'https://api.qijieya.cn/meting/?server=netease&type=song&id=',
           'https://api.i-meto.com/meting/api?server=netease&type=song&id=',
-          'https://api.moeyao.cn/meting/?server=netease&type=song&id=',
         ];
+
+        // 关键：fetch 对"只连不答"的服务器会永久挂起，必须自带超时，
+        // 否则 Promise.all 永不 settle，UI 会卡在 CONNECTING 转圈。
+        const fetchWithTimeout = async (url: string, ms: number) => {
+          const ctl = new AbortController();
+          const timer = setTimeout(() => ctl.abort(), ms);
+          try {
+            return await fetch(url, { signal: ctl.signal });
+          } finally {
+            clearTimeout(timer);
+          }
+        };
 
         const fetchOne = async (songId: string) => {
           for (const base of APIs) {
             try {
-              const r = await fetch(base + songId);
+              const r = await fetchWithTimeout(base + songId, 8000);
               if (!r.ok) continue;
               const j = await r.json();
               const item = Array.isArray(j) ? j[0] : j;
+              // 过滤镜像返回的错误体（如 {"error":"unknown type"}）
+              if (item && item.error) continue;
               if (item && (item.url || item.name)) return { id: songId, item };
-            } catch { /* 换下一个镜像 */ }
+            } catch { /* 超时或网络异常，换下一个镜像 */ }
           }
           return null;
         };
@@ -129,10 +144,17 @@ export function MusicProvider({ children }: { children: ReactNode }) {
       }
     };
 
-    if (siteConfig.cloudMusicIds?.length > 0) fetchMusicData();
-    else setIsLoading(false);
+    if (siteConfig.cloudMusicIds?.length > 0) {
+      fetchMusicData();
+      // 兜底：无论如何 15 秒后必须结束加载态，绝不允许永久转圈
+      var failsafe = setTimeout(() => {
+        if (isMounted) setIsLoading(false);
+      }, 15000);
+    } else {
+      setIsLoading(false);
+    }
 
-    return () => { isMounted = false; };
+    return () => { isMounted = false; clearTimeout(failsafe); };
   }, []);
 
   useEffect(() => {
@@ -236,6 +258,30 @@ export function MusicProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  // 元数据就绪：拿到真实时长。注意这不等于播放进度，不能复用 handleTimeUpdate
+  const handleLoadedMetadata = () => {
+    if (audioRef.current) {
+      setDuration(audioRef.current.duration || 0);
+      setCurrentTime(audioRef.current.currentTime || 0);
+    }
+  };
+
+  // 音频加载失败：跳过这首，不要卡住播放器
+  const handleAudioError = () => {
+    const code = audioRef.current?.error?.code;
+    const msg =
+      code === 1 ? "♪ 播放已中止 ♪" :
+      code === 2 ? "♪ 网络中断，正在重试 ♪" :
+      code === 3 ? "♪ 音频解码失败 ♪" :
+      code === 4 ? "♪ 该音源暂时不可用 ♪" : "♪ 音源加载失败 ♪";
+    setCurrentLyric(msg);
+    setIsPlaying(false);
+    // 有多首时自动跳下一首，避免停在一首坏歌上
+    if (playlist.length > 1) {
+      setTimeout(() => nextSong(), 1200);
+    }
+  };
+
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newProgress = Number(e.target.value);
     setProgress(newProgress);
@@ -273,9 +319,12 @@ export function MusicProvider({ children }: { children: ReactNode }) {
         <audio
           ref={audioRef}
           src={currentSong.src}
+          preload="metadata"
           onTimeUpdate={handleTimeUpdate}
-          onEnded={handleEnded} // 使用我们重写的结束处理
-          onLoadedMetadata={handleTimeUpdate}
+          onEnded={handleEnded}
+          onLoadedMetadata={handleLoadedMetadata}
+          onError={handleAudioError}
+          onStalled={() => setCurrentLyric("♪ 缓冲中，请稍候 ♪")}
         />
       )}
     </MusicContext.Provider>

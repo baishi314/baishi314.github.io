@@ -33,9 +33,10 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 		// 认证 token（可选）
 		auth: "",
 		// 备用 API 配置（当主 API 失败时使用）
+		// 注意：moeyao 曾返回 {"error":"unknown type"}，已替换为 qijieya
 		fallbackApis: [
+			"https://api.qijieya.cn/meting/?server=:server&type=:type&id=:id",
 			"https://api.i-meto.com/meting/api?server=:server&type=:type&id=:id&r=:r",
-			"https://api.moeyao.cn/meting/?server=:server&type=:type&id=:id",
 		],
 	},
 
