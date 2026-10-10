@@ -89,6 +89,7 @@ pin: true
 | 网站 | 是什么 | 直接进 |
 |---|---|---|
 | **Hello 算法** | GitHub 13 万星的开源算法教程，用图和动画讲数据结构。免费、中文、可以当教科书用 | [hello-algo.com](https://www.hello-algo.com/) |
+| **OI Wiki** | 算法竞赛的知识百科：从并查集、线段树到网络流，每个知识点都有原理推导和可运行的模板代码。覆盖 OI 和 ACM 两类竞赛，是打算法竞赛最全的中文资料库。刷题遇到不会的算法，先来这查 | [oi-wiki.org](https://oi-wiki.org/) |
 | **VisuAlgo** | 把排序、树、图这些算法做成动画，能一步步看着它跑。学数据结构时看不懂文字，来看这个 | [visualgo.net](https://visualgo.net/) |
 | **浙大数据结构** | 浙江大学的《数据结构》国家精品课，MOOC 上口碑很好，考研党常用 | [去 MOOC 搜课名](https://www.icourse163.org/) |
 | **王道数据结构** | 3097 万播放，考研 408 数据结构的事实标准。考研就用这套 | [去 B 站看](https://www.bilibili.com/video/BV1b7411N798/) |
