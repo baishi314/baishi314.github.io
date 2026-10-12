@@ -4,7 +4,7 @@ date: 2026-10-09
 draft: false
 tags: ["资源", "导航"]
 categories: ["导航"]
-summary: "60+ 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。"
+summary: "80+ 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。"
 ShowToc: true
 TocOpen: true
 weight: 1
@@ -24,6 +24,9 @@ pin: true
 | **CS 61A** | 伯克利最经典的程序设计入门课官网，有全套讲义和作业。想体验国外名校计算机第一课，做这个 | [cs61a.org](https://cs61a.org/) |
 | **你缺计** | 写给非计算机专业的计算机通识课，讲原理不讲八股。文科生也能看懂的那类 | [criwits.top](https://www.criwits.top/missing/) |
 | **Ac-Wiki** | 大学生经验百科，学习、科研、竞赛、升学的问题基本都有人写过答案 | [ac-wiki.org](https://ac-wiki.org/) |
+| **Missing Semester** | MIT 开的「你大学不会教但一定要会」的课：命令行、编辑器、调试、版本控制、数据整理。全程干货、不废话，刚学编程时看完能少走很多弯路 | [missing.csail.mit.edu](https://missing.csail.mit.edu/) |
+| **Crash Course 计算机科学** | 8 小时把计算机科学全貌讲一遍的科普视频：计算机怎么来的、内部怎么运作、有哪些核心思想。开学前想对专业有个整体印象，看这个 | [去 B 站看](https://www.bilibili.com/video/BV1EW411u7th) |
+| **Linux 101** | 中国科大学生写的 Linux 入门讲义，从装系统、命令行讲到服务器运维。想在 Linux 上正经学点东西，这本来路很清楚 | [lug.ustc.edu.cn](https://101.lug.ustc.edu.cn/) |
 
 ---
 
@@ -97,6 +100,7 @@ pin: true
 | **力扣 LeetCode** | 面试算法题主战场，题目按数组、链表、树、动态规划分好专题。找工作必刷 | [leetcode.cn](https://leetcode.cn/) |
 | **Codeforces** | 全球最大的算法竞赛平台，有定期比赛和全球排名。想打竞赛来这练手速和思维 | [codeforces.com](https://codeforces.com/) |
 | **牛客网** | 校招社招求职平台，笔试真题、面经、内推都在这里。大厂笔试的题基本能搜到 | [nowcoder.com](https://www.nowcoder.com/) |
+| **Nand2Tetris** | 从一根导线（Nand 门）开始，一路做出逻辑门、CPU、汇编器、虚拟机，最后在你自己造的计算机上跑俄罗斯方块。想搞懂「计算机到底怎么运作」，这门课最直观 | [nand2tetris.org](https://www.nand2tetris.org/) |
 
 ---
 
@@ -124,12 +128,34 @@ pin: true
 
 ---
 
+## 🧰 开发神器
+
+| 网站 | 是什么 | 直接进 |
+|---|---|---|
+| **Compiler Explorer** | 你写的 C/C++ 代码到底变成了什么？这个网站左边写代码、右边实时显示编译出的汇编，还能换编译器对比。搞不懂指针、循环优化、函数调用开销时，看一眼就明白了 | [godbolt.org](https://godbolt.org/) |
+| **explainshell** | 把一长串看不懂的 Linux 命令粘进去，它逐段告诉你每个参数是什么意思。别人给的命令不敢直接跑？先来这拆开看看 | [explainshell.com](https://explainshell.com/) |
+| **Learn Git Branching** | 用动画和小关卡把 git 的 merge、rebase、分支玩明白，全程在网页上点，不怕搞坏自己的仓库。看完文字教程还是一头雾水的，来这动手过几关 | [网页版](https://learngitbranching.js.org/?locale=zh_CN) |
+| **Regex101** | 正则表达式在线调试器：边写边高亮匹配结果，右侧逐字符解释你的表达式在干什么，还给出每种语言的等价写法。写正则靠猜是行不通的，用这个 | [regex101.com](https://regex101.com/) |
+| **Excalidraw** | 手绘风格的在线画图工具，画出来的示意图自带草稿感、很适合放进课程报告和 PPT。不用装软件、不用注册，打开就能画 | [excalidraw.com](https://excalidraw.com/) |
+| **draw.io** | 画流程图、UML 图、架构图的老牌免费工具，模板多、导出格式全，还能直接存到网盘或 GitHub。实验报告里要画图基本靠它 | [diagrams.net](https://app.diagrams.net/) |
+| **github1s** | 在网页上直接以 VS Code 的界面打开任意 GitHub 仓库，能跳转定义、看文件树。想读别人的源码，又懒得 clone 到本地时用这个 | [github1s.com](https://github1s.com/) |
+| **Bootlin 源码阅读** | Linux 内核源码在线阅读，最狠的是交叉引用：点任意函数、结构体都能跳到定义处。想看看操作系统底层到底怎么写的，从这翻 | [bootlin.com](https://elixir.bootlin.com/linux/latest/source) |
+| **HelloGitHub** | 每月一期推荐 GitHub 上好玩又适合上手的开源项目，会讲清楚这个项目是干嘛的。想找练手项目但不知道从哪翻起，看两期就有感觉了 | [hellogithub.com](https://hellogithub.com/) |
+| **CS 视频课程合集** | 一个人整理的「全世界计算机课程视频」清单，按方向分好类，从操作系统到编译原理都有。想看视频课但不知道有哪些可选的，来这挑 | [GitHub](https://github.com/Developer-Y/cs-video-courses) |
+| **提问的智慧** | 写代码卡住时怎么问才能得到回答？这篇经典文章讲透了：先自己查、把问题描述清楚、给出你试过什么。看完再提问，得到答案的概率会高很多 | [GitHub](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md) |
+| **命令行的艺术** | GitHub 十万星的开源教程，把 Linux 命令行里真正好用的技巧一条条列出来。不用从头读，随手翻几条用进日常，效率就不一样了 | [GitHub](https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md) |
+| **keybr** | 在线练盲打，会根据你的薄弱字母动态出题，不知不觉就把指法练顺了。打字总要看键盘的可以每天来十分钟 | [keybr.com](https://www.keybr.com/) |
+| **SQLZoo** | 把 SQL 分成一个个小练习，边读题边在网页里写查询，立刻能看到结果对不对。学 SQL 光看语法记不住，动手写才记得牢 | [sqlzoo.net](https://sqlzoo.net/wiki/SQL_Tutorial) |
+
+---
+
 ## 🎓 课程 & 考试
 
 | 网站 | 是什么 | 直接进 |
 |---|---|---|
 | **中国大学 MOOC** | 国内高校的免费公开课，从高数、线代到专业课都有。找课在搜索框里搜课程名 | [icourse163.org](https://www.icourse163.org/) |
 | **高数（B 站）** | 220 万播放的高数上册精讲，函数极限这块讲得尤其清楚，适合预习和补课 | [去 B 站看](https://www.bilibili.com/video/BV1xhmnYFEir) |
+| **3Blue1Brown** | 用动画讲数学的顶流频道，线性代数、微积分、神经网络都有成系列的讲解。课本上看不懂的「这到底在干嘛」，他能给你画出来 | [3blue1brown.com](https://www.3blue1brown.com/) |
 | **四六级单词课** | 刘晓艳四级单词精讲，25 天带背一遍，317 万播放。四六级词汇量不够的看这个 | [去 B 站看](https://www.bilibili.com/video/BV1ZzUYByEKi/) |
 | **四六级刷题** | 在线刷四六级真题，做完直接看解析和错题统计 | [examcrafts.com](https://examcrafts.com/cet4) |
 | **蓝桥杯** | 蓝桥杯官方平台，报名、模拟赛、历年真题都在这。计算机专业性价比很高的竞赛 | [lanqiao.cn](https://www.lanqiao.cn/) |
@@ -178,4 +204,4 @@ pin: true
 
 ---
 
-**最后更新：2026-10-09** · 全部链接已实测可用
+**最后更新：2026-10-12** · 全部 89 条链接已实测可用

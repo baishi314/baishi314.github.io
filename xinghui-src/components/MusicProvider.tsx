@@ -122,6 +122,12 @@ export function MusicProvider({ children }: { children: ReactNode }) {
         const settled = await Promise.all(siteConfig.cloudMusicIds.map(fetchOne));
         const rawResults = settled.filter(Boolean).map((s: any) => ({ id: s.id, ...s.item }));
 
+        // Meting 的 lrc 字段是「歌词接口 URL」，不是歌词正文。
+        // 若误当正文交给 parseLrc()，会解析出 0 行且 lrcUrl 又是 null，
+        // 两个分支都进不去 → 永久停在「正在缓冲」。
+        const isLrcUrl = (v: any) =>
+          typeof v === 'string' && /^https?:\/\//i.test(v);
+
         const mergedPlaylist = rawResults
           .filter((song: any) => song && song.url && !song.error)
           .map((song: any) => ({
@@ -130,8 +136,9 @@ export function MusicProvider({ children }: { children: ReactNode }) {
             artist: song.artist || song.author || '未知歌手',
             cover: song.cover || song.pic || 'https://bu.dusays.com/2026/03/24/69c24230a5ff8.jpg',
             src: song.url,
-            lrcUrl: song.lrc ? null : null,
-            lyrics: song.lrc ? parseLrc(song.lrc) : []
+            // URL 走异步抓取，正文（少数镜像直接返回文本）才走同步解析
+            lrcUrl: isLrcUrl(song.lrc) ? song.lrc : null,
+            lyrics: isLrcUrl(song.lrc) ? [] : (song.lrc ? parseLrc(song.lrc) : [])
           }));
 
         if (isMounted) {
@@ -172,17 +179,28 @@ export function MusicProvider({ children }: { children: ReactNode }) {
       fetch(currentSong.lrcUrl)
         .then(res => res.text())
         .then(text => {
-          if (isMounted) {
-             const parsed = parseLrc(text);
-             setLyrics(parsed);
-             setPlaylist(prev => {
-                const newPlaylist = [...prev];
-                newPlaylist[currentIndex].lyrics = parsed;
-                return newPlaylist;
-             });
+          if (!isMounted) return;
+          const parsed = parseLrc(text);
+          setLyrics(parsed);
+          setPlaylist(prev => {
+             const newPlaylist = [...prev];
+             newPlaylist[currentIndex].lyrics = parsed;
+             return newPlaylist;
+          });
+          // 关键：立刻顶掉「正在缓冲」，否则要等下一次 timeupdate 才有歌词，
+          // 若音频已播到有词的位置会一直显示缓冲
+          if (parsed.length > 0) {
+            const t = audioRef.current?.currentTime || 0;
+            const active = parsed.slice().reverse().find(l => t >= l.time);
+            setCurrentLyric(active?.text || parsed[0].text);
+          } else {
+            setCurrentLyric("♪ 纯享音乐 ♪");
           }
         })
         .catch(() => { if (isMounted) setCurrentLyric("\u266a \u7eaf\u4eab\u97f3\u4e50 \u266a"); });
+    } else {
+      // 既无内嵌歌词也无歌词链接：明确提示，不要停在「正在缓冲」
+      if (isMounted) setCurrentLyric("♪ 纯享音乐 ♪");
     }
 
     if (isPlaying && audioRef.current) {
