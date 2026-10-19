@@ -97,6 +97,9 @@ pin: true
 | **浙大数据结构** | 浙江大学的《数据结构》国家精品课，MOOC 上口碑很好，考研党常用 | [去 MOOC 搜课名](https://www.icourse163.org/) |
 | **王道数据结构** | 3097 万播放，考研 408 数据结构的事实标准。考研就用这套 | [去 B 站看](https://www.bilibili.com/video/BV1b7411N798/) |
 | **洛谷** | 中文算法竞赛刷题站，题解质量高、有梯度。零基础刷算法从这里开始 | [luogu.com.cn](https://www.luogu.com.cn/) |
+| **南阳理工 OJ** | 南阳理工学院的校内评测站，对新生最友好：自带按专题排好的「萌新入门题单」，从顺序结构、分支循环一路排到二分、搜索，不用自己规划路线 | [acm.nyist.edu.cn](https://acm.nyist.edu.cn/) |
+| **杭电 OJ** | 杭州电子科技大学的老牌 ACM 训练站，2005 年开到现在。74 卷约 7400 题，中文题面多；1000 号起是经典入门区，1089–1096 专门练 A+B 的八种输入格式 | [acm.hdu.edu.cn](https://acm.hdu.edu.cn/) |
+| **北大 POJ** | 北京大学的在线评测系统，题从 1000 编起、分 31 卷，题面以英文为主。动态规划和搜索的入门名题很多出自这里，地址是 http，浏览器可能提示不安全 | [poj.org](http://poj.org/problemlist) |
 | **力扣 LeetCode** | 面试算法题主战场，题目按数组、链表、树、动态规划分好专题。找工作必刷 | [leetcode.cn](https://leetcode.cn/) |
 | **Codeforces** | 全球最大的算法竞赛平台，有定期比赛和全球排名。想打竞赛来这练手速和思维 | [codeforces.com](https://codeforces.com/) |
 | **牛客网** | 校招社招求职平台，笔试真题、面经、内推都在这里。大厂笔试的题基本能搜到 | [nowcoder.com](https://www.nowcoder.com/) |
