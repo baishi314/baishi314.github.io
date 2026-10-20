@@ -4,7 +4,7 @@ date: 2026-10-09
 draft: false
 tags: ["资源", "导航"]
 categories: ["导航"]
-summary: "110 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。"
+summary: "127 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。"
 ShowToc: true
 TocOpen: true
 weight: 1
@@ -36,6 +36,8 @@ pin: true
 |---|---|---|
 | **从零开始的 AI 学习** | 帝国理工计算机博士做的 AI 科普系列，先讲「AI 这三年发生了什么」，再讲「为什么你写不好提示词」。不炒概念、不卖课，从生活例子讲起，20 分钟能看完 | [看第 1 集](https://www.bilibili.com/video/BV1TDGT6vEqC/) |
 | **为什么你写不好提示词** | 同一个需求换个说法，AI 输出天差地别。这集用一个小实验演示提示词的威力，把 Agent、Harness 这些唬人新词拨开，只讲最该先掌握的提示词 | [看这集](https://www.bilibili.com/video/BV1VrGu6JEqk/) |
+| **PyTorch 官方教程** | 深度学习框架 PyTorch 的官方教程集：从张量、自动求导讲到训练一个完整网络，每篇都能直接跑。装完框架第一站就来这 | [pytorch.org](https://pytorch.org/tutorials/) |
+| **动手学深度学习** | 李沐等人写的开源书，中文免费，讲完理论立刻给可运行的代码，还配了视频课。不想只抄代码的话，从这本打底 | [zh.d2l.ai](https://zh.d2l.ai/) |
 
 ---
 
@@ -58,6 +60,7 @@ pin: true
 
 | 网站 | 是什么 | 直接进 |
 |---|---|---|
+| **Cursor** | 把 AI 直接做进编辑器：能读整个项目、按一句话改多个文件，比在网页里贴代码顺手。免费版够上手，学生认证有优惠 | [cursor.com](https://cursor.com/) |
 | **Cline** | VS Code 里的 agent 插件，装完侧边栏点一下就开始改文件，每一步想干什么都先弹出来问你同不同意。新手看着它干活学得最快 | [cline.bot](https://cline.bot/) |
 | **Roo Code** | Cline 的多模式版本：写代码、做架构、调试各一套提示词，长任务不容易跑偏。也是 VS Code 插件，免费开源 | [roocode.com](https://roocode.com/) |
 
@@ -150,6 +153,21 @@ pin: true
 | **Codeforces** | 全球最大的算法竞赛平台，有定期比赛和全球排名。想打竞赛来这练手速和思维 | [codeforces.com](https://codeforces.com/) |
 | **牛客网** | 校招社招求职平台，笔试真题、面经、内推都在这里。大厂笔试的题基本能搜到 | [nowcoder.com](https://www.nowcoder.com/) |
 | **Nand2Tetris** | 从一根导线（Nand 门）开始，一路做出逻辑门、CPU、汇编器、虚拟机，最后在你自己造的计算机上跑俄罗斯方块。想搞懂「计算机到底怎么运作」，这门课最直观 | [nand2tetris.org](https://www.nand2tetris.org/) |
+| **李春葆《数据结构教程》第 6 版** | 清华大学出版社的教材，微课视频加题库版（C 语言描述）。不少学校的数据结构课就按它讲，配着上课进度翻最省事 | [清华社](https://www.tup.tsinghua.edu.cn/booksCenter/book_09395501.html) |
+| **数据结构基础（贺利坚）** | 高校老师录的课，明确按李春葆那本的顺序讲，配套代码和练习都有。课上没听明白时用它补 | [看第 1 集](https://www.bilibili.com/video/BV1pf4y1Z7nf/) |
+
+---
+
+## 🏆 竞赛
+
+| 网站 | 是什么 | 直接进 |
+|---|---|---|
+| **全国大学生数学建模竞赛** | 高教社杯，每年 9 月，三人一队、三天三夜。官网发历年赛题和获奖名单，通知都以这为准；学校一般先搞校内选拔 | [cmathc.org.cn](https://www.cmathc.org.cn/) |
+| **美国大学生数学建模竞赛（美赛）** | 每年 2 月，MCM/ICM 连考四天。题目全英文、获奖面相对宽，对保研和简历有实打实的加分，队里最好有人专管英文摘要 | [comap.com](https://www.comap.com/contests/mcm-icm) |
+| **CCPC 中国大学生程序设计竞赛** | 国内自己的 ICPC 体系，分站赛加总决赛，题风接近 ICPC。想往简历上写算法竞赛经历，从 CCPC 网络赛开始报名最现实 | [ccpc.io](https://ccpc.io/) |
+| **ICPC 国际大学生程序设计竞赛** | 全球最硬的编程竞赛，三人一队一台电脑。校队选拔从校内赛起步，ACM 集训队练的就是它 | [icpc.global](https://icpc.global/) |
+| **RoboMaster 机甲大师赛** | 大疆办的机器人对抗赛：自己造步兵、英雄、工程机器人上场打。偏机械、电控、视觉三个方向，跟 ACM 是两套技能树 | [robomaster.com](https://www.robomaster.com/) |
+| **蓝桥杯** | 个人赛，分省赛和国赛，题目偏算法加填空。含金量不如 ACM，但准备周期短、拿奖概率高，大一先拿张奖状不亏 | [lanqiao.cn](https://www.lanqiao.cn/) |
 
 ---
 
@@ -208,6 +226,19 @@ pin: true
 | **四六级单词课** | 刘晓艳四级单词精讲，25 天带背一遍，317 万播放。四六级词汇量不够的看这个 | [去 B 站看](https://www.bilibili.com/video/BV1ZzUYByEKi/) |
 | **四六级刷题** | 在线刷四六级真题，做完直接看解析和错题统计 | [examcrafts.com](https://examcrafts.com/cet4) |
 | **蓝桥杯** | 蓝桥杯官方平台，报名、模拟赛、历年真题都在这。计算机专业性价比很高的竞赛 | [lanqiao.cn](https://www.lanqiao.cn/) |
+| **计算机三级（NCRE）** | 全国计算机等级考试官网。三级分网络技术、数据库技术、信息安全技术、嵌入式系统开发技术四个方向，大纲和报名时间都以这为准；不用一级级往上考，可以直接报三级 | [neea.edu.cn](https://ncre.neea.edu.cn/) |
+
+---
+
+## 📑 论文 & 学术检索
+
+| 网站 | 是什么 | 直接进 |
+|---|---|---|
+| **谷歌学术** | 搜论文第一站：看被引次数、找免费 PDF、顺着引用链往前翻。国内直连不稳，得挂代理 | [scholar.google.com](https://scholar.google.com/) |
+| **dblp** | 计算机领域的论文书目库，按作者、会议、年份查，结果干净、不掺无关内容。查「这个方向有哪些顶会」「某人发过什么」用它最准 | [dblp.org](https://dblp.org/) |
+| **arXiv** | 预印本服务器：论文没正式发表就先挂这，cs.LG、cs.CL 每天都有新的。追最新进展看它，但没有同行评审，结论得自己掂量 | [arxiv.org](https://arxiv.org/) |
+| **Semantic Scholar** | AI 加持的学术搜索：自动抽要点、标引用关系。谷歌学术打不开时，有些场景它反而更好用 | [semanticscholar.org](https://www.semanticscholar.org/) |
+| **Connected Papers** | 输入一篇论文，自动画出同领域的引用关系图，点越近关系越紧。入门一个新方向时，五分钟摸清这群人在讨论什么 | [connectedpapers.com](https://www.connectedpapers.com/) |
 
 ---
 
@@ -261,4 +292,4 @@ pin: true
 
 ---
 
-**最后更新：2026-10-20** · 全部 110 条链接已实测可用
+**最后更新：2026-10-20** · 全部 127 条链接已实测可用
