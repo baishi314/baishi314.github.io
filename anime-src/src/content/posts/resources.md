@@ -1,7 +1,7 @@
 ---
 title: 🔗 常用资源导航
 published: 2026-10-09
-description: 93 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。
+description: 110 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。
 tags: [资源, 导航]
 category: 导航
 draft: false
@@ -34,6 +34,52 @@ comment: true
 |---|---|---|
 | **从零开始的 AI 学习** | 帝国理工计算机博士做的 AI 科普系列，先讲「AI 这三年发生了什么」，再讲「为什么你写不好提示词」。不炒概念、不卖课，从生活例子讲起，20 分钟能看完 | [看第 1 集](https://www.bilibili.com/video/BV1TDGT6vEqC/) |
 | **为什么你写不好提示词** | 同一个需求换个说法，AI 输出天差地别。这集用一个小实验演示提示词的威力，把 Agent、Harness 这些唬人新词拨开，只讲最该先掌握的提示词 | [看这集](https://www.bilibili.com/video/BV1VrGu6JEqk/) |
+
+---
+
+## 🤖 AI Agent 工具
+
+### 终端 Agent（在命令行里干活）
+
+| 网站 | 是什么 | 直接进 |
+|---|---|---|
+| **Claude Code** | Anthropic 官方的终端 agent：在项目目录里敲 claude，它能读整个代码库、直接改文件、跑命令自查。Windows 原生支持，装完先配 key | [claude.com](https://claude.com/product/claude-code) |
+| **Codex CLI** | OpenAI 官方命令行 agent，Rust 写的，启动比 Node 版快一截，支持沙箱执行和「先给方案再动手」。装法 npm i -g @openai/codex | [GitHub](https://github.com/openai/codex) |
+| **Gemini CLI** | Google 的终端 agent，用 Google 账号登录就有很大的免费额度，个人写代码基本不花钱。开源，可自己改 | [GitHub](https://github.com/google-gemini/gemini-cli) |
+| **Qwen Code** | 阿里通义的终端 agent，从 Gemini CLI 分叉改的，直接接通义千问模型，国内网络不用翻墙。装法 npm i -g @qwen-code/qwen-code | [GitHub](https://github.com/QwenLM/qwen-code) |
+| **Aider** | 最老牌的结对编程工具之一：你改一处、它跟着补全，每次改动自动 git commit，改坏了直接回滚。几乎任何模型都能接，包括本地 Ollama | [aider.chat](https://aider.chat/) |
+| **OpenCode** | 开源终端 agent，TUI 界面，模型随便换（OpenAI 兼容的都行），不绑定厂商。Windows 上 npm i -g opencode-ai 就能跑 | [opencode.ai](https://opencode.ai/) |
+| **Crush** | Charm 团队（做 glow、lazygit 那批人）出的终端 agent，界面好看、Go 写的、启动快。嫌别家终端界面丑的可以试它 | [GitHub](https://github.com/charmbracelet/crush) |
+| **Continue CLI** | 开源的 IDE 插件加命令行，最大特点是能完全接本地模型，代码不出本机。公司不让把代码传到云端时用它 | [continue.dev](https://continue.dev/) |
+
+### 编辑器 / IDE 里用
+
+| 网站 | 是什么 | 直接进 |
+|---|---|---|
+| **Cline** | VS Code 里的 agent 插件，装完侧边栏点一下就开始改文件，每一步想干什么都先弹出来问你同不同意。新手看着它干活学得最快 | [cline.bot](https://cline.bot/) |
+| **Roo Code** | Cline 的多模式版本：写代码、做架构、调试各一套提示词，长任务不容易跑偏。也是 VS Code 插件，免费开源 | [roocode.com](https://roocode.com/) |
+
+### 在自己电脑上跑模型
+
+| 网站 | 是什么 | 直接进 |
+|---|---|---|
+| **Ollama** | 一条 ollama run qwen3:8b 就在本机跑起开源模型，还能开 OpenAI 兼容端口让上面那些 agent 接它当后端，一分钱不花 | [ollama.com](https://ollama.com/) |
+| **LM Studio** | 图形界面的本地模型客户端：搜模型、下载、聊天、开兼容 API 全在窗口里点。不想碰命令行的话比 Ollama 省事 | [lmstudio.ai](https://lmstudio.ai/) |
+
+### MCP 协议 & 自己写 Agent
+
+| 网站 | 是什么 | 直接进 |
+|---|---|---|
+| **MCP 官方文档** | 让 AI 接上你的文件、数据库、浏览器的那套通用协议。Claude Code、Codex、Cline 现在都支持，想给 agent 加能力先看这 | [modelcontextprotocol.io](https://modelcontextprotocol.io/) |
+| **awesome-mcp-servers** | 社区整理的 MCP 服务器大全，按用途分好类：连 GitHub、查数据库、控浏览器、读本地文件。想让 agent 干某件事，先来这搜有没有现成的 | [GitHub](https://github.com/punkpeye/awesome-mcp-servers) |
+| **Pydantic AI** | Python 的 agent 框架，写法跟普通异步函数几乎一样，但会校验模型返回的结构。自己动手写 agent，从这入门最不容易被抽象层绕晕 | [ai.pydantic.dev](https://ai.pydantic.dev/) |
+| **AutoGen** | 微软的多 agent 框架：几个 agent 各干一块、互相讨论，最后拼出结果。想做「一个写代码、一个审代码」这种组合来看它 | [GitHub](https://github.com/microsoft/autogen) |
+
+### Windows 一键装
+
+| 网站 | 是什么 | 直接进 |
+|---|---|---|
+| **AI Agent 一键安装器** | 上面这些命令行工具在 Windows 上要一个个配 Node、Python、环境变量，很折腾。这个 bat 双击就有菜单：自动装 Node/pnpm/uv，批量装各组 CLI，写 API 环境变量，清掉失效代理。附配套教程 | [下载 .bat](https://github.com/baishi314/baishi314.github.io/raw/main/tools/install-agent-cli.bat) |
 
 ---
 
@@ -213,4 +259,4 @@ comment: true
 
 ---
 
-**最后更新：2026-10-19** · 全部 93 条链接已实测可用
+**最后更新：2026-10-20** · 全部 110 条链接已实测可用
