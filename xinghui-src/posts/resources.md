@@ -1,7 +1,7 @@
 ---
 title: "🔗 常用资源导航"
 date: "2026-10-09 12:00:00"
-description: "130 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。"
+description: "131 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。"
 cover: "/cover-default.svg"
 tags: ["资源", "导航"]
 pinned: true
@@ -260,6 +260,7 @@ pinned: true
 | **picDone** | 在线修图，抠图、压缩、加字、拼图十秒出结果，免费不要登录 | [picdone.com](https://picdone.com/zh/) |
 | **易简历** | 在线做简历，选模板填内容直接导出 PDF 或 Word，免费 | [toolxx.cn](https://toolxx.cn/) |
 | **触手 AI** | 国内的 AI 绘画平台，文字生成图片、图生图都能做，有免费额度 | [chushou.art](https://www.chushou.art/) |
+| **TieZ** | macOS 上的剪贴板管理器，有点东西：复制过的文字、富文本、图片、文件路径全自动进历史，多色标签分类加全局搜索，随手就能捞回来；Tauri 2 + Rust 写的原生应用，占内存小，有毛玻璃 / 书页 / 便利贴 / 3D 等八套主题，平时贴边自动隐藏不挡事。跨设备用 WebDAV 或 MQTT 同步，验证码能直接推到当前那台设备，同一个局域网也能互传文件。只发 macOS 版，去 Releases 下 dmg | [GitHub](https://github.com/jimuzhe/tiez-clipboard) |
 
 ---
 
@@ -291,4 +292,4 @@ pinned: true
 
 ---
 
-**最后更新：2026-10-25** · 全部 130 条链接已实测可用
+**最后更新：2026-10-25** · 全部 131 条链接已实测可用
