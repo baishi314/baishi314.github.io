@@ -124,7 +124,7 @@
       <div class="meta">
         版本 <b>v1</b> · 32.8 MB · 2026-10-26<br>
         适配 Windows 10 / 11（64 位）<br>
-        SHA-256 <code>0acaf757…f118f099</code>
+        SHA-256 <code>1d62da51…901781</code>
       </div>
       <a class="btn" href="downloads/sportworld-neuq-v1.zip" download>⬇ 下载 zip</a>
     </div>
@@ -138,6 +138,34 @@
       <li><b>双击</b>文件夹里的「运动世界校园-东秦助手.exe」，进「设置与登录」页填手机号 + 密码（就是平时 App 登录的那个）。城市和坐标已经预填好，高德 Key 可以留空，点「登录」。</li>
       <li><b>回「跑步」页</b>用默认的自动参数，点「在线预览」看一眼路线，没问题点「提交此方案」。跑完到「记录与诊断」页确认成绩上传成功。</li>
     </ol>
+  </div>
+
+  <!-- 高德 Key -->
+  <div class="card" id="amap">
+    <h2><span class="dot" style="background:#d29922"></span>配一个高德 Key（可选）</h2>
+    <p><b>不配也能跑。</b>配了以后「校园环」会走高德的步行路径规划，沿真实道路绕行；不配就按打卡点顺序直线拼接。两种都能正常提交，只是直线版看起来不太像人跑出来的。</p>
+
+    <p style="margin-top:18px"><b style="color:var(--warn)">最容易踩的坑：平台必须选「Web服务」。</b>
+      控制台里那六个选项 —— Android平台、iOS平台、Web端(JS API)、Web服务、智能硬件、微信小程序 ——
+      选成 Android，页面会要求填「发布版安全码 SHA1」「PackageName」，那是安卓 App 签名才有的东西，本程序没有也不需要，卡在这一栏不是你操作错了。</p>
+
+    <ol class="steps" style="margin-top:18px">
+      <li>打开 <a href="https://console.amap.com/dev/key/app" target="_blank" rel="noopener" style="color:var(--primary)">高德开放平台控制台 · 我的应用</a>，手机号或支付宝登录。</li>
+      <li>还没有应用就点「创建新应用」，应用名随便填（比如「校园跑」），类型选出行或工具都行。</li>
+      <li>在应用那一行点「添加 Key」：<b>Key 名称</b>随便填，<b>服务平台选「Web服务」</b>，勾选协议，点「提交」。</li>
+      <li>列表里会出现一串 32 位字符（字母+数字），复制它。</li>
+      <li>打开软件 →「设置与登录」页 →「高德 Key」输入框 → 粘贴 →「保存设置」。回「跑步」页点「在线预览」，路线能沿路生成就成功了。</li>
+    </ol>
+
+    <table style="margin-top:18px">
+      <tr><th>现象</th><th>原因</th></tr>
+      <tr><td>提示 Key 无效</td><td>用了 Android 或 Web端(JS API) 的 Key。后者是给网页用的，同样不行，必须是「Web服务」。</td></tr>
+      <tr><td>提示超额 QUOTA</td><td>当天免费额度用完了，隔天恢复。</td></tr>
+      <tr><td>能不能共用</td><td>别共用。额度算在你号上，滥用被封也是封你的。要分享软件就让人自己申请，两分钟的事。</td></tr>
+      <tr><td>换电脑要重申请吗</td><td>不用，同一个 Key 长期有效。软件配置在程序目录的 <code>.funsport</code> 文件夹里，一起拷走就不用重填。</td></tr>
+    </table>
+
+    <p style="margin-top:14px">压缩包里也带了一份纯文字版：<code>高德Key申请教程.txt</code>，离线看这个。</p>
   </div>
 
   <!-- 与原版对比 -->
