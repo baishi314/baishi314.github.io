@@ -10,6 +10,9 @@ on:
       - 'assets/**'
       - 'index.html'
       - 'index.about.html'
+      - 'sportworld.html'
+      - 'downloads/**'
+      - 'tools/**'
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
@@ -107,6 +110,9 @@ jobs:
           mkdir -p public
           if [ -f index.html ]; then cp index.html public/index.html; fi
           if [ -f index.about.html ]; then cp index.about.html public/index.about.html; fi
+          if [ -f sportworld.html ]; then cp sportworld.html public/sportworld.html; fi
+          if [ -d downloads ]; then mkdir -p public/downloads; cp -r downloads/* public/downloads/; fi
+          if [ -d tools ]; then mkdir -p public/tools; cp -r tools/* public/tools/; fi
           touch public/.nojekyll
           if [ -d assets ]; then cp -r assets public/; fi
           echo "--- public 结构 ---"

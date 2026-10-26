@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>运动世界校园 · 东秦助手 — baishi314</title>
+<meta name="description" content="运动世界校园的东秦适配版：解压双击就能用，不用装 Python、不用配环境。附下载与使用说明。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏃</text></svg>">
+<style>
+  :root{
+    --bg:#0a0e16; --card:rgba(255,255,255,.045); --text:#e6edf3; --muted:#8b98a9;
+    --primary:#5b8def; --accent:#7c5cff; --border:rgba(255,255,255,.09);
+    --shadow:0 18px 50px rgba(0,0,0,.45); --ok:#3fb950; --warn:#d29922;
+  }
+  html[data-theme="light"]{
+    --bg:#f4f6fb; --card:rgba(15,23,42,.028); --text:#0d1b2a; --muted:#5b6b7f;
+    --primary:#2f6bff; --accent:#6b3cff; --border:rgba(15,23,42,.09);
+    --shadow:0 18px 50px rgba(15,23,42,.12); --ok:#1a7f37; --warn:#9a6700;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh;
+    -webkit-font-smoothing:antialiased;transition:background .3s,color .3s;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px}
+
+  .glow{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+  .glow::before,.glow::after{content:"";position:absolute;border-radius:50%;filter:blur(90px);opacity:.5}
+  .glow::before{width:620px;height:620px;top:-260px;left:-160px;
+    background:radial-gradient(circle,color-mix(in srgb,var(--primary) 55%,transparent),transparent 70%)}
+  .glow::after{width:520px;height:520px;top:-160px;right:-140px;
+    background:radial-gradient(circle,color-mix(in srgb,var(--accent) 50%,transparent),transparent 70%)}
+
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
+    background:color-mix(in srgb,var(--bg) 76%,transparent);border-bottom:1px solid var(--border)}
+  .nav-in{max-width:900px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-weight:700;font-size:18px;letter-spacing:.5px}
+  .logo span{color:var(--primary)}
+  .nav-links{display:flex;gap:20px;align-items:center;font-size:15px}
+  .nav-links a{color:var(--muted);transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  .theme-btn{cursor:pointer;background:var(--card);border:1px solid var(--border);color:var(--text);
+    width:38px;height:38px;border-radius:10px;font-size:16px;display:grid;place-items:center;transition:.2s}
+  .theme-btn:hover{border-color:var(--primary)}
+
+  header{padding:64px 0 26px;text-align:center}
+  header h1{font-size:36px;font-weight:800;letter-spacing:.5px;margin-bottom:14px}
+  .grad{background:linear-gradient(90deg,var(--primary),var(--accent));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--muted);font-size:16px;max-width:640px;margin:0 auto}
+
+  .card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:26px 28px;margin-bottom:22px}
+  .card h2{font-size:20px;margin-bottom:14px;display:flex;align-items:center;gap:9px}
+  .card h2 .dot{width:9px;height:9px;border-radius:50%;background:var(--primary);flex:none}
+  .card p{color:var(--muted);font-size:15px}
+  .card p+p{margin-top:10px}
+
+  .dl{display:flex;flex-wrap:wrap;align-items:center;gap:18px;justify-content:space-between}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 26px;border-radius:12px;font-weight:700;font-size:16px;
+    background:linear-gradient(90deg,var(--primary),var(--accent));color:#fff;transition:transform .2s,box-shadow .2s;white-space:nowrap}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px color-mix(in srgb,var(--primary) 40%,transparent)}
+  .meta{font-size:13px;color:var(--muted);line-height:1.9}
+  .meta code{font-family:ui-monospace,Consolas,monospace;font-size:12px;background:color-mix(in srgb,var(--text) 8%,transparent);
+    padding:2px 6px;border-radius:6px}
+
+  ol.steps{list-style:none;counter-reset:s;margin-top:6px}
+  ol.steps li{counter-increment:s;position:relative;padding-left:42px;margin-bottom:16px;color:var(--muted);font-size:15px}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:50%;
+    display:grid;place-items:center;font-size:13px;font-weight:700;color:#fff;
+    background:linear-gradient(135deg,var(--primary),var(--accent))}
+  ol.steps li b{color:var(--text);font-weight:600}
+
+  table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--border);color:var(--muted)}
+  th{color:var(--text);font-weight:600;font-size:13px}
+  tr:last-child td{border-bottom:none}
+  td:first-child{color:var(--text)}
+
+  .tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:7px;border:1px solid var(--border);
+    background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--muted)}
+  .note{border-left:3px solid var(--warn);padding:2px 0 2px 14px;margin-top:14px;font-size:14px;color:var(--muted)}
+  footer{border-top:1px solid var(--border);padding:26px 0 40px;color:var(--muted);font-size:13px;text-align:center}
+  footer a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+  footer a:hover{color:var(--text)}
+  @media(max-width:640px){
+    header h1{font-size:27px} header{padding:44px 0 18px}
+    .nav-links a:not(.theme-btn){display:none}
+    .dl{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<nav>
+  <div class="nav-in">
+    <a class="logo" href="index.html">baishi314<span>.</span></a>
+    <div class="nav-links">
+      <a href="index.html">风格大厅</a>
+      <a href="index.about.html">关于我</a>
+      <a href="https://github.com/baishi314" target="_blank" rel="noopener">GitHub</a>
+      <div class="theme-btn" id="themeBtn" title="切换主题">🌙</div>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <h1>运动世界校园 · <span class="grad">东秦助手</span></h1>
+    <p>把开源的校园跑轨迹工具打包成开箱即用的版本：解压、双击、填账号，三步完事。</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- 下载 -->
+  <div class="card">
+    <h2><span class="dot"></span>下载</h2>
+    <div class="dl">
+      <div class="meta">
+        版本 <b>v1</b> · 32.8 MB · 2026-10-26<br>
+        适配 Windows 10 / 11（64 位）<br>
+        SHA-256 <code>0acaf757…f118f099</code>
+      </div>
+      <a class="btn" href="downloads/sportworld-neuq-v1.zip" download>⬇ 下载 zip</a>
+    </div>
+  </div>
+
+  <!-- 用法 -->
+  <div class="card">
+    <h2><span class="dot" style="background:var(--ok)"></span>怎么用</h2>
+    <ol class="steps">
+      <li><b>解压。</b>把整个文件夹放到硬盘上（比如 D 盘）。别只把 exe 单独拖出来 —— 旁边那些文件是程序本体，缺一个都跑不起来。</li>
+      <li><b>双击</b>文件夹里的「运动世界校园-东秦助手.exe」，进「设置与登录」页填手机号 + 密码（就是平时 App 登录的那个）。城市和坐标已经预填好，高德 Key 可以留空，点「登录」。</li>
+      <li><b>回「跑步」页</b>用默认的自动参数，点「在线预览」看一眼路线，没问题点「提交此方案」。跑完到「记录与诊断」页确认成绩上传成功。</li>
+    </ol>
+  </div>
+
+  <!-- 与原版对比 -->
+  <div class="card">
+    <h2><span class="dot" style="background:var(--accent)"></span>和原版有什么区别</h2>
+    <p>原项目要自己装 Python、装依赖、跑命令行配置向导。这版把那些全消掉了：</p>
+    <table>
+      <tr><th>项目</th><th>原版</th><th>这版</th></tr>
+      <tr><td>运行环境</td><td>装 Python 3.8+ 和 5 个依赖</td><td>解压双击，不用装任何东西</td></tr>
+      <tr><td>配置</td><td>命令行回答 6 个问题</td><td>只填手机号 + 密码，其余预设</td></tr>
+      <tr><td>学校坐标</td><td>手动填写</td><td>已预设东秦，登录后按打卡点自动校准</td></tr>
+      <tr><td>高德 Key</td><td>不填校园环生成会失败</td><td>可留空，自动走备用路线</td></tr>
+      <tr><td>崩溃排查</td><td>控制台报错</td><td>自动写 crash.log，发给我就能定位</td></tr>
+    </table>
+  </div>
+
+  <!-- 注意 -->
+  <div class="card">
+    <h2><span class="dot" style="background:var(--warn)"></span>用之前要知道的</h2>
+    <p><b>时间窗口</b>是硬限制：不在学校规定的有效时段内提交，服务器直接拒绝。软件会提示，但改不了这条。</p>
+    <p><b>人脸识别</b>那一步得你自己在手机上过，软件只负责生成和提交轨迹，绕不过去。</p>
+    <p><b>第一次先小量试</b>：建议只提交 1 公里左右，确认能正常上传再加量。</p>
+    <p><b>出问题看日志</b>：程序文件夹里的 <code>boot.log</code> 每次启动都会写，<code>crash.log</code> 只有崩了才出现。把 crash.log 发过来我照着重打一版。</p>
+    <div class="note">这是对开源项目的本地化打包，仅供学习交流与编程实践参考。用它代跑校园跑属于绕开考核，学校的规则自己掂量，后果也自己担。</div>
+  </div>
+
+  <!-- 出处 -->
+  <div class="card">
+    <h2><span class="dot" style="background:var(--muted)"></span>出处与许可</h2>
+    <p>核心逻辑来自 <a href="https://github.com/Funrestan/FunSportWorld" target="_blank" rel="noopener" style="color:var(--primary)">Funrestan/FunSportWorld</a>
+       与 <a href="https://github.com/YanamiNeko/NekoSportsWorldTool" target="_blank" rel="noopener" style="color:var(--primary)">YanamiNeko/NekoSportsWorldTool</a>，原作者署名与 MIT 许可证一并保留在压缩包里。</p>
+    <p>这版改动只有三处：配置目录兼容打包后的运行方式、界面与坐标改成东秦、加了启动与崩溃日志。业务逻辑一行没动。</p>
+    <p style="margin-top:14px"><span class="tag">Python 3.12</span> <span class="tag">PyInstaller onedir</span> <span class="tag">Tkinter GUI</span> <span class="tag">MIT</span></p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    © 2026 baishi314 ·
+    <a href="index.html">风格大厅</a> ·
+    <a href="index.about.html">关于我</a> ·
+    <a href="https://github.com/baishi314/baishi314.github.io" target="_blank" rel="noopener">源码</a>
+  </div>
+</footer>
+
+<script>
+  const root=document.documentElement, btn=document.getElementById('themeBtn');
+  const saved=localStorage.getItem('theme');
+  if(saved){root.setAttribute('data-theme',saved);btn.textContent=saved==='light'?'☀️':'🌙';}
+  btn.addEventListener('click',()=>{
+    const next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    btn.textContent=next==='light'?'☀️':'🌙';
+    localStorage.setItem('theme',next);
+  });
+</script>
+</body>
+</html>
