@@ -75,6 +75,7 @@ jobs:
 
       - name: Build Firefly site
         if: hashFiles('anime-src/package.json') != ''
+        continue-on-error: true
         timeout-minutes: 10
         env:
           BASE_PATH: /anime/
@@ -88,6 +89,7 @@ jobs:
       # ---------- 星辉小屋 (Next.js 静态导出) ----------
       - name: Build Xinghui site
         if: hashFiles('xinghui-src/package.json') != ''
+        continue-on-error: true
         timeout-minutes: 10
         env:
           BASE_PATH: /xinghui
