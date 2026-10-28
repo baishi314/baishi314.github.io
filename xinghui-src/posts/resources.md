@@ -1,7 +1,7 @@
 ---
 title: "🔗 常用资源导航"
 date: "2026-10-09 12:00:00"
-description: "131 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。"
+description: "141 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。"
 cover: "/cover-default.svg"
 tags: ["资源", "导航"]
 pinned: true
@@ -249,6 +249,23 @@ pinned: true
 
 ---
 
+## ⌨️ 输入法 & 文本
+
+| 网站 | 是什么 | 直接进 |
+|---|---|---|
+| **Rime 官网** | 中州韵输入法引擎的官方站。Windows 的小狼毫、macOS 的鼠须管、Linux 的 ibus-rime 都是它的前端，想搞清 Rime 是什么、为什么值得折腾，先看这里 | [rime.im](https://rime.im/) |
+| **小狼毫 Weasel** | Windows 上的 Rime 前端，装完就有全拼/双拼可用。词库、皮肤、方案切换全在本机文件里改，改坏了随时能回滚 | [rime/weasel](https://github.com/rime/weasel) |
+| **雾凇拼音 rime-ice** | 最省心的中文方案：词库全、常用词准、配置项开箱即用。不加任何自定义就已经能日常用，是我现在的默认方案 | [iDvel/rime-ice](https://github.com/iDvel/rime-ice) |
+| **万象拼音 rime-wanxiang** | 带语法模型的整句方案，连打长句一次上屏；支持首字母简码，打单个字母就出高频候选。想榨干整句准确率就上这个 | [amzxyz/rime-wanxiang](https://github.com/amzxyz/rime-wanxiang) |
+| **雾凇拼音 Wiki** | 词库怎么挂、import_tables 怎么写、部署报错怎么修，配置卡住了先翻这里，比翻 issues 快 | [rime-ice wiki](https://github.com/iDvel/rime-ice/wiki) |
+| **白霜拼音 rime-frost** | 另一个词库向方案，词频和简码的取舍与雾凇不同。可以拿来对比手感，也可以只借它的词库 | [gaboolic/rime-frost](https://github.com/gaboolic/rime-frost) |
+| **Rime 定制指南** | 官方 wiki，*.custom.yaml 补丁机制、schema 结构、lua 扩展全在这。Rime 里所有「为什么必须这么写」的答案 | [rime/home wiki](https://github.com/rime/home/wiki) |
+| **東風破 plum** | 官方方案/词库包管理器，一条命令装全套方案和词库，懒得手动拷文件就用它 | [rime/plum](https://github.com/rime/plum) |
+| **鼠须管 Squirrel** | macOS 上的 Rime 前端。配置结构和 Windows 完全通用，换平台不用重新学一遍 | [rime/squirrel](https://github.com/rime/squirrel) |
+| **ibus-rime** | Linux 上的 Rime 前端（ibus 框架），双系统或服务器党用这个，同一套配置文件直接搬过去 | [rime/ibus-rime](https://github.com/rime/ibus-rime) |
+
+---
+
 ## 🛠️ 好用的工具
 
 | 网站 | 是什么 | 直接进 |
@@ -292,4 +309,4 @@ pinned: true
 
 ---
 
-**最后更新：2026-10-25** · 全部 131 条链接已实测可用
+**最后更新：2026-10-28** · 全部 141 条链接已实测可用

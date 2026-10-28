@@ -1,9 +1,9 @@
 {
   "title": "🔗 常用资源导航",
   "date": "2026-10-09",
-  "summary": "131 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。",
+  "summary": "141 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。",
   "intro": "**这篇会一直置顶。** 找不到东西的时候，先来这里翻。\n> 每一条都是**实际点开验证过**的，挂了就换掉。按「想干什么」分好类了——**想学什么就直接点哪个**。",
-  "outro": "**最后更新：2026-10-25** · 全部 131 条链接已实测可用",
+  "outro": "**最后更新：2026-10-28** · 全部 141 条链接已实测可用",
   "sections": [
     {
       "emoji": "📚",
@@ -814,6 +814,72 @@
           "Everything 和 Listary 的现代替代品：直接解析 NTFS 的 MFT 表，开机就建好全盘索引，敲几个字秒出结果；再靠 USN 日志实时盯着文件变动，刚存的文件立刻能搜到。C# WPF 写的界面干净，支持插件和自定义搜索范围。开源在 GitHub，去 Releases 页下最新版",
           "https://github.com/Lertaro/Lertaro/releases",
           "下载页"
+        ]
+      ]
+    },
+    {
+      "emoji": "⌨️",
+      "name": "输入法 & 文本",
+      "rows": [
+        [
+          "Rime 官网",
+          "中州韵输入法引擎的官方站。Windows 的小狼毫、macOS 的鼠须管、Linux 的 ibus-rime 都是它的前端，想搞清 Rime 是什么、为什么值得折腾，先看这里",
+          "https://rime.im/",
+          "rime.im"
+        ],
+        [
+          "小狼毫 Weasel",
+          "Windows 上的 Rime 前端，装完就有全拼/双拼可用。词库、皮肤、方案切换全在本机文件里改，改坏了随时能回滚",
+          "https://github.com/rime/weasel",
+          "rime/weasel"
+        ],
+        [
+          "雾凇拼音 rime-ice",
+          "最省心的中文方案：词库全、常用词准、配置项开箱即用。不加任何自定义就已经能日常用，是我现在的默认方案",
+          "https://github.com/iDvel/rime-ice",
+          "iDvel/rime-ice"
+        ],
+        [
+          "万象拼音 rime-wanxiang",
+          "带语法模型的整句方案，连打长句一次上屏；支持首字母简码，打单个字母就出高频候选。想榨干整句准确率就上这个",
+          "https://github.com/amzxyz/rime-wanxiang",
+          "amzxyz/rime-wanxiang"
+        ],
+        [
+          "雾凇拼音 Wiki",
+          "词库怎么挂、import_tables 怎么写、部署报错怎么修，配置卡住了先翻这里，比翻 issues 快",
+          "https://github.com/iDvel/rime-ice/wiki",
+          "rime-ice wiki"
+        ],
+        [
+          "白霜拼音 rime-frost",
+          "另一个词库向方案，词频和简码的取舍与雾凇不同。可以拿来对比手感，也可以只借它的词库",
+          "https://github.com/gaboolic/rime-frost",
+          "gaboolic/rime-frost"
+        ],
+        [
+          "Rime 定制指南",
+          "官方 wiki，*.custom.yaml 补丁机制、schema 结构、lua 扩展全在这。Rime 里所有「为什么必须这么写」的答案",
+          "https://github.com/rime/home/wiki",
+          "rime/home wiki"
+        ],
+        [
+          "東風破 plum",
+          "官方方案/词库包管理器，一条命令装全套方案和词库，懒得手动拷文件就用它",
+          "https://github.com/rime/plum",
+          "rime/plum"
+        ],
+        [
+          "鼠须管 Squirrel",
+          "macOS 上的 Rime 前端。配置结构和 Windows 完全通用，换平台不用重新学一遍",
+          "https://github.com/rime/squirrel",
+          "rime/squirrel"
+        ],
+        [
+          "ibus-rime",
+          "Linux 上的 Rime 前端（ibus 框架），双系统或服务器党用这个，同一套配置文件直接搬过去",
+          "https://github.com/rime/ibus-rime",
+          "rime/ibus-rime"
         ]
       ]
     },
