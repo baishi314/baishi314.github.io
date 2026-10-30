@@ -1,9 +1,9 @@
 {
   "title": "🔗 常用资源导航",
   "date": "2026-10-09",
-  "summary": "141 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。",
+  "summary": "148 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。",
   "intro": "**这篇会一直置顶。** 找不到东西的时候，先来这里翻。\n> 每一条都是**实际点开验证过**的，挂了就换掉。按「想干什么」分好类了——**想学什么就直接点哪个**。",
-  "outro": "**最后更新：2026-10-28** · 全部 141 条链接已实测可用",
+  "outro": "**最后更新：2026-10-30** · 全部 148 条链接已实测可用",
   "sections": [
     {
       "emoji": "📚",
@@ -994,6 +994,54 @@
           "中文动画数据库，看过的番能打分记录，找番时按评分排序很好用。（个别网络下打不开，可换流量）",
           "https://bgm.tv/",
           "bgm.tv"
+        ]
+      ]
+    },
+    {
+      "emoji": "⏰",
+      "name": "时间管理 & 日程",
+      "rows": [
+        [
+          "滴答清单",
+          "目前在用的日程总入口：手机装 App、电脑有网页版，任务云端同步，到期强提醒。免费版就够个人用，课表、作业 DDL、班会签到全塞进同一个清单",
+          "https://dida365.com/",
+          "dida365.com"
+        ],
+        [
+          "滴答清单开放平台",
+          "官方 REST API 文档。想让 AI 替你建任务，必须先从这申请应用拿到 client_id / client_secret，再把接口包成 function 或挂 MCP。别用第三方套壳，官方的最稳",
+          "https://developer.dida365.com/",
+          "developer.dida365.com"
+        ],
+        [
+          "滴答清单帮助中心",
+          "重复规则、提醒、清单共享怎么配的官方说明。写 repeatFlag 之前先来这确认一遍语法，比在群里问人快",
+          "https://help.dida365.com/",
+          "help.dida365.com"
+        ],
+        [
+          "mcp-dida365",
+          "社区维护的滴答清单 MCP server，支持国服 Dida365，功能覆盖比较全（清单、任务、备注、优先级、提醒、重复都能改）。配 Claude / Codex / Cursor 直接挂这个",
+          "https://github.com/Xrondev/mcp-dida365",
+          "GitHub"
+        ],
+        [
+          "ticktick-mcp-v2",
+          "另一个滴答清单 MCP 实现，走 TickTick v2 API，接口更轻、响应更快，适合只做增删查改的简单场景",
+          "https://github.com/yidianyiko/ticktick-mcp-v2",
+          "GitHub"
+        ],
+        [
+          "WorkBuddy（CodeBuddy）文档",
+          "腾讯云 CodeBuddy 桌面端的官方文档。里面的「连接器」能一键 OAuth 授权滴答清单，是五个平台里唯一不用碰配置文件的接法",
+          "https://www.workbuddy.cn/docs/",
+          "workbuddy.cn"
+        ],
+        [
+          "Model Context Protocol",
+          "MCP 官方站，讲清「AI 怎么调用外部工具」这套标准的来龙去脉。配置文件写 `mcpServers` 看不懂的时候，来这补原理",
+          "https://modelcontextprotocol.io/",
+          "modelcontextprotocol.io"
         ]
       ]
     }

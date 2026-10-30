@@ -4,7 +4,7 @@ date: 2026-10-09
 draft: false
 tags: ["资源", "导航"]
 categories: ["导航"]
-summary: "141 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。"
+summary: "148 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。"
 ShowToc: true
 TocOpen: true
 weight: 1
@@ -313,4 +313,18 @@ pin: true
 
 ---
 
-**最后更新：2026-10-28** · 全部 141 条链接已实测可用
+## ⏰ 时间管理 & 日程
+
+| 网站 | 是什么 | 直接进 |
+|---|---|---|
+| **滴答清单** | 目前在用的日程总入口：手机装 App、电脑有网页版，任务云端同步，到期强提醒。免费版就够个人用，课表、作业 DDL、班会签到全塞进同一个清单 | [dida365.com](https://dida365.com/) |
+| **滴答清单开放平台** | 官方 REST API 文档。想让 AI 替你建任务，必须先从这申请应用拿到 client_id / client_secret，再把接口包成 function 或挂 MCP。别用第三方套壳，官方的最稳 | [developer.dida365.com](https://developer.dida365.com/) |
+| **滴答清单帮助中心** | 重复规则、提醒、清单共享怎么配的官方说明。写 repeatFlag 之前先来这确认一遍语法，比在群里问人快 | [help.dida365.com](https://help.dida365.com/) |
+| **mcp-dida365** | 社区维护的滴答清单 MCP server，支持国服 Dida365，功能覆盖比较全（清单、任务、备注、优先级、提醒、重复都能改）。配 Claude / Codex / Cursor 直接挂这个 | [GitHub](https://github.com/Xrondev/mcp-dida365) |
+| **ticktick-mcp-v2** | 另一个滴答清单 MCP 实现，走 TickTick v2 API，接口更轻、响应更快，适合只做增删查改的简单场景 | [GitHub](https://github.com/yidianyiko/ticktick-mcp-v2) |
+| **WorkBuddy（CodeBuddy）文档** | 腾讯云 CodeBuddy 桌面端的官方文档。里面的「连接器」能一键 OAuth 授权滴答清单，是五个平台里唯一不用碰配置文件的接法 | [workbuddy.cn](https://www.workbuddy.cn/docs/) |
+| **Model Context Protocol** | MCP 官方站，讲清「AI 怎么调用外部工具」这套标准的来龙去脉。配置文件写 `mcpServers` 看不懂的时候，来这补原理 | [modelcontextprotocol.io](https://modelcontextprotocol.io/) |
+
+---
+
+**最后更新：2026-10-30** · 全部 148 条链接已实测可用
