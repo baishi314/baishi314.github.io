@@ -4,7 +4,7 @@ date: 2026-10-09
 draft: false
 tags: ["资源", "导航"]
 categories: ["导航"]
-summary: "148 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。"
+summary: "152 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。"
 ShowToc: true
 TocOpen: true
 weight: 1
@@ -327,4 +327,15 @@ pin: true
 
 ---
 
-**最后更新：2026-10-30** · 全部 148 条链接已实测可用
+## 🗂️ 资源聚合站
+
+| 网站 | 是什么 | 直接进 |
+|---|---|---|
+| **阿虚同学的储物间** | 国内维护最勤的互联网资源导航之一：影视/动漫/直播/纪录片、电子书/漫画/音乐/听书、资源搜索与下载、软件与教程四大块，几千个条目。每条都标了添加时间，挂了还有备用镜像，找冷门资源先来这里翻 | [axutongxue.com](https://axutongxue.com/) |
+| **储物间 · GitHub 镜像** | 主站打不开时的首选备用：架在 GitHub Pages 上，内容和主站同步，国内访问比主站还稳一点 | [axutongxue.github.io](https://axutongxue.github.io/) |
+| **储物间 · 备用镜像 top** | 第二个备用域名，条目比主站略旧，主站和 GitHub 镜像都进不去时再用 | [axutongxue.top](https://axutongxue.top/) |
+| **储物间 · 网盘仓库** | 作者把打包整理好的资源放在城通网盘里。要用浏览器打开、首次加载会慢，等一会儿再刷新 | [axutongxue.cccpan.com](https://axutongxue.cccpan.com/) |
+
+---
+
+**最后更新：2026-10-31** · 全部 152 条链接已实测可用
