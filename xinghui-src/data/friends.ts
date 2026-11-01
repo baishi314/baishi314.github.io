@@ -2,6 +2,14 @@ export interface Friend { id: string; name: string; url: string; description: st
 
 export const friendsData: Friend[] = [
   {
+    id: "zwkwww",
+    name: "张文凯 · 个人主页",
+    description: "同校同学的个人小站，纯手工打造的个人主页，还会写单 HTML 的 FPS。",
+    avatar: "/avatars/zwkwww.webp",
+    url: "https://zwkwww.top",
+    themeColor: "rgba(45, 212, 191, 0.5)",
+  },
+  {
     id: "github",
     name: "GitHub",
     description: "全世界程序员的家，我的代码也在这里。",
