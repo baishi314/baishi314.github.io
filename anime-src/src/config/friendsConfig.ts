@@ -23,6 +23,15 @@ export const friendsPageConfig: FriendsPageConfig = {
 // 友链配置
 export const friendsConfig: FriendLink[] = [
 	{
+		title: "张文凯 · 个人主页",
+		imgurl: "https://zwkwww.top/media/d40340b812bb431c",
+		desc: "同校同学的个人小站：全站单文件构建，还塞了个能敲命令的 AI 终端。",
+		siteurl: "https://zwkwww.top",
+		tags: ["Blog"],
+		weight: 11,
+		enabled: true,
+	},
+	{
 		title: "夏夜流萤",
 		imgurl:
 			"https://weavatar.com/avatar/d252655d40d6874417a720bad0a6c5f77f8f6a1fd2f882f8f338402dc37e4190?s=640",

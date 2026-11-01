@@ -65,6 +65,11 @@ paginate = 10
     url = "/archives/"
     weight = 40
   [[menu.main]]
+    identifier = "friends"
+    name = "友链"
+    url = "/friends/"
+    weight = 45
+  [[menu.main]]
     identifier = "search"
     name = "搜索"
     url = "/search/"
