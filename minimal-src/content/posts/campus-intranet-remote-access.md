@@ -1,6 +1,6 @@
 ---
 title: "高校内网资源在校外怎么用：一次完整的可用性探查"
-date: 2026-11-02
+date: 2026-11-01
 draft: false
 tags: ["网络", "校园网", "WebVPN", "踩坑"]
 categories: ["技术"]
