@@ -13,6 +13,8 @@ cover: ""
 
 所以干脆写了个脚本，把这些步骤压成一个菜单。**它只是把我手工敲过的命令按顺序抄了一遍**，没有黑魔法，你可以先打开看再决定跑不跑。
 
+> 这是「AI Agent 上手」系列第一篇，只管把程序装进机器。**装完敲命令没反应、或者注册时被要求绑手机**，直接看第二篇：[〈装完还是用不了：配置、通道与防封〉](../agent-cli-config/)。
+
 ## 一分钟装完
 
 三种方式，挑一个：
@@ -74,7 +76,7 @@ Node 没装的话脚本先调 `winget install OpenJS.NodeJS.LTS`，再走 corepa
 | `ANTHROPIC_API_KEY` | Claude Code | 官方 key（`sk-ant-...`） |
 | `ANTHROPIC_BASE_URL` | Claude Code | 用中转时填网关地址 |
 | `ANTHROPIC_AUTH_TOKEN` | Claude Code | 用中转时填中转的 key |
-| `OPENAI_BASE_URL` | Codex / Aider / OpenCode | 如 `https://api.deepseek.com/v1` |
+| `OPENAI_BASE_URL` | Aider / OpenCode（Codex 新版已改用 `config.toml`，见第二篇） | 如 `https://api.deepseek.com/v1` |
 | `OPENAI_API_KEY` | 同上 | 对应平台的 key |
 
 写完**必须关掉终端重开**，新窗口才会读到。当前窗口里 `echo $env:OPENAI_API_KEY` 看不到值，不代表没写进去。
@@ -139,3 +141,7 @@ winget uninstall OpenJS.NodeJS.LTS            # 卸载底层环境
 ---
 
 脚本在仓库里：[tools/](https://github.com/baishi314/baishi314.github.io/tree/main/tools)。有坑踩到过、或者想让脚本多装一个工具，提 issue 或直接改。
+
+---
+
+装完成了但连不上、或者注册时被要求绑手机，见第二篇：[〈装完还是用不了：配置、通道与防封〉](../agent-cli-config/)。
