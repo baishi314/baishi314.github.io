@@ -76,15 +76,31 @@ jobs:
       - name: Build Firefly site
         if: hashFiles('anime-src/package.json') != ''
         continue-on-error: true
-        timeout-minutes: 10
+        timeout-minutes: 15
         env:
           BASE_PATH: /anime/
         run: |
           cd anime-src
           pnpm install --no-frozen-lockfile
-          pnpm build
+          # 恢复随仓库提交的 Astro 字体缓存：GitHub 运行环境访问 Fontsource CDN 会 fetch failed，
+          # 命中缓存后 astro build 不再联网抓字体（该缓存由本地 astro build 生成）
+          if [ -d ci/fonts-cache ]; then
+            mkdir -p node_modules/.astro/fonts
+            cp -r ci/fonts-cache/. node_modules/.astro/fonts/
+            echo "字体缓存已恢复：$(find node_modules/.astro/fonts -type f | wc -l) 个文件"
+          else
+            echo "::warning::缺少 anime-src/ci/fonts-cache，构建可能因拉取字体失败"
+          fi
+          set -o pipefail
+          pnpm build 2>&1 | tee /tmp/anime-build.log
+          if [ ! -f dist/index.html ]; then
+            echo "::error::Firefly 构建未产出 dist/index.html"
+            tail -n 80 /tmp/anime-build.log
+            exit 1
+          fi
           mkdir -p "$GITHUB_WORKSPACE/public/anime"
           cp -r dist/* "$GITHUB_WORKSPACE/public/anime/"
+          echo "anime 顶层产物条目：$(find "$GITHUB_WORKSPACE/public/anime" -maxdepth 1 | wc -l)"
 
       # ---------- 星辉小屋 (Next.js 静态导出) ----------
       - name: Build Xinghui site
