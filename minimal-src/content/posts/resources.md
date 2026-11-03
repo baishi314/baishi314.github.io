@@ -250,6 +250,7 @@ pin: true
 |---|---|---|
 | **Pogget** | Windows 上的桌面文件收纳盒：把散在各个盘里的常用文件拖进盒子，在桌面点开就能用——不搬文件、只建连接，不占额外空间，用完随时清空。还能拆分出多个盒子当抽屉用，磁力访问窗会在「打开/保存」对话框旁边自动吸附，选文件不用一层层翻目录。完全免费 | [pogget.vilinko.com](https://pogget.vilinko.com/) |
 | **Lertaro** | Everything 和 Listary 的现代替代品：直接解析 NTFS 的 MFT 表，开机就建好全盘索引，敲几个字秒出结果；再靠 USN 日志实时盯着文件变动，刚存的文件立刻能搜到。C# WPF 写的界面干净，支持插件和自定义搜索范围。开源在 GitHub，去 Releases 页下最新版 | [下载页](https://github.com/Lertaro/Lertaro/releases) |
+| **Snipaste** | 把截图和贴图两件事做到极致的免费小工具：F1 框选截图，F3 把截下来的图直接钉在屏幕上——边看参考资料边写东西，不用在两个窗口之间来回切。截图自带标注、马赛克、取色器，钉住的图还能缩放、调透明度、在上面接着画。绿色版解压即用，Windows / macOS 都有 | [snipaste.com](https://www.snipaste.com/) |
 
 ---
 

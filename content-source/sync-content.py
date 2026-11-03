@@ -401,10 +401,64 @@ def render_hello(fl):
 GENERATED_SLUGS = {"resources", "hello-world", "welcome"}
 
 
+# 三站都部署在 GitHub Pages 的子路径下（/minimal/、/anime/、/xinghui/），
+# 正文里的站内图片统一写成 /images/xxx，写进各站时按站点前缀补全，
+# 否则 Astro 会把相对路径当内容资源去解析并报 ImageNotFound。
+IMG_PREFIX = {
+    "minimal": "/minimal",
+    "anime": "/anime",
+    "xinghui": "/xinghui",
+}
+
+
+def rewrite_images(body, theme):
+    """把正文中的站内图片地址 /images/... 补成该站点实际可访问的绝对路径。"""
+    prefix = IMG_PREFIX.get(theme, "")
+    if not prefix:
+        return body
+    # 只处理站内绝对路径，外链（https://...）不动
+    return re.sub(r'(src="|\]\()/images/', lambda m: m.group(1) + prefix + "/images/", body)
+
+
+# 文章配图的唯一源头：content-source/images/。
+# 同步时原样复制到三站各自的静态资源目录，一个地方放图，三个站都能用。
+IMG_SRC = os.path.join(SRC, "images")
+IMG_DESTS = {
+    "minimal": os.path.join(ROOT, "minimal-src", "static", "images"),
+    "anime": os.path.join(ROOT, "anime-src", "public", "images"),
+    "xinghui": os.path.join(ROOT, "xinghui-src", "public", "images"),
+}
+
+
+def copy_images():
+    """把 content-source/images/ 下的图复制到三站静态目录。"""
+    if not os.path.isdir(IMG_SRC):
+        return
+    n = 0
+    for theme, dest in IMG_DESTS.items():
+        for root, _dirs, files in os.walk(IMG_SRC):
+            rel = os.path.relpath(root, IMG_SRC)
+            target = dest if rel == "." else os.path.join(dest, rel)
+            for fn in files:
+                src = os.path.join(root, fn)
+                dst = os.path.join(target, fn)
+                os.makedirs(target, exist_ok=True)
+                same = False
+                if os.path.exists(dst):
+                    a = os.path.getsize(src)
+                    b = os.path.getsize(dst)
+                    same = a == b and open(src, "rb").read() == open(dst, "rb").read()
+                if not same:
+                    shutil.copy2(src, dst)
+                n += 1
+        print(f"  images: -> {os.path.relpath(dest, ROOT)}")
+    print(f"  images: 共 {n} 个文件已分发")
+
+
 def sync_theme_posts(theme, posts_dir, fm_fn, extra_skip=()):
     """
     把 content-source/posts/ 的文章写进目标目录。
-    theme: 站点标识（仅用于日志）
+    theme: 站点标识（仅用于日志，同时决定图片路径前缀）
     posts_dir: 目标 posts 目录
     fm_fn: frontmatter 生成函数
     """
@@ -422,7 +476,7 @@ def sync_theme_posts(theme, posts_dir, fm_fn, extra_skip=()):
             rm(os.path.join(posts_dir, m["slug"] + ".md"))
             continue
         write(os.path.join(posts_dir, m["slug"] + ".md"),
-              fm_fn(m) + m["body"].rstrip() + "\n")
+              fm_fn(m) + rewrite_images(m["body"].rstrip(), theme) + "\n")
         written.append(m["slug"])
 
     # 清掉源里已删除的文章（只清脚本管的那些）
@@ -606,6 +660,8 @@ def main():
     if check:
         print("\n（--check 模式：只列出内容源，不写入）")
         return
+
+    copy_images()
 
     sync_minimal(p, r, projs, FLAVOR["minimal"])
     sync_anime(p, r, projs, FLAVOR["anime"])

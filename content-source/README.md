@@ -101,7 +101,41 @@ cover: ""                      # 封面图，空着用默认图
 
 ---
 
-## 六、本地预览（发布前想看效果）
+## 六、文章里放图片
+
+**三站都支持图片**，但图片只有一份源：放到这里
+
+```
+content-source/images/你的目录名/图片名.png
+```
+
+正文里按**站内绝对路径**引用（注意开头是一个斜杠，不要写 `../../`）：
+
+```markdown
+![图片说明](/images/你的目录名/图片名.png)
+```
+
+跑同步脚本时它会做两件事：
+
+1. 把 `content-source/images/` 下的图原样复制到三个站
+   （`minimal-src/static/images/`、`anime-src/public/images/`、
+   `xinghui-src/public/images/`）；
+2. 把正文里的 `/images/` 按站点补成 `/minimal/images/`、`/anime/images/`、
+   `/xinghui/images/`。
+
+**为什么要补前缀**：三套站挂在 GitHub Pages 的子路径下
+（`/minimal/`、`/anime/`、`/xinghui/`），文章网址是
+`/minimal/posts/xxx/` 这种两层深，直接写 `/images/a.png` 会跑到域名根上 404。
+
+**别写相对路径**：二次元小屋（Astro）会把 `![](../../images/a.png)` 当成
+内容资源去解析，找不到就报 `[ImageNotFound]`，整个站构建失败。
+
+配图建议：宽度 1280px 左右、PNG，浅色底；二次元站正文栏比较窄，图上
+字号别小于 24px，否则缩小后看不清。
+
+---
+
+## 七、本地预览（发布前想看效果）
 
 双击 `预览.bat`，选 1 / 2 / 3 选一个站，会自动打开浏览器预览。
 
@@ -109,7 +143,7 @@ cover: ""                      # 封面图，空着用默认图
 
 ---
 
-## 七、出问题了怎么办
+## 八、出问题了怎么办
 
 **发布失败 / 文章没出现**：
 1. 打开 https://github.com/baishi314/baishi314.github.io/actions
@@ -128,10 +162,11 @@ git push
 
 ---
 
-## 八、文件清单
+## 九、文件清单
 
 ```
 content-source/
+├── images/              ← 文章配图都放这（自动分发给三站）
 ├── posts/               ← 你写的文章都放这
 │   ├── hello-writing.md     示例（可以删）
 │   ├── hello-world.md       开站文（按主题微调）
@@ -148,7 +183,7 @@ content-source/
 
 ---
 
-## 九、几个约定
+## 十、几个约定
 
 - **别手改生成出来的文件**：`minimal-src/`、`anime-src/src/content/`、
   `xinghui-src/posts/` 里的内容会被同步脚本**覆盖**。要改就改
