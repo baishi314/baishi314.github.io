@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CS × 数学技能树</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<button class="skip-link" id="skip-link">跳到主要内容</button>
+<header class="topbar">
+  <button class="icon-btn only-narrow" id="btn-side" aria-label="打开学习计划" aria-controls="side" aria-expanded="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <a class="brand" href="#overview" title="回到领域总览">
+    <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><path class="logo-l" d="M7 24L16 8M16 8l9 16M7 24h18"/><circle cx="16" cy="8" r="3.6" class="logo-n1"/><circle cx="7" cy="24" r="3.6" class="logo-n2"/><circle cx="25" cy="24" r="3.6" class="logo-n3"/></svg>
+    <span class="brand-text">
+      <h1>CS × 数学技能树</h1>
+      <span class="sub">先看总览选领域，再在地图里一步步点亮</span>
+    </span>
+  </a>
+  <div class="seg" role="group" aria-label="视图">
+    <button id="tab-overview" aria-pressed="true">总览</button>
+    <button id="tab-map" aria-pressed="false">技能地图</button>
+  </div>
+  <div class="progress" aria-live="polite">
+    <div class="progress-text"><strong id="lit-count">0</strong> / <span id="total-count">0</span> 已点亮 · <strong id="avail-count">0</strong> 个现在能学</div>
+    <div class="bar" aria-hidden="true"><div class="bar-fill" id="bar-fill"></div></div>
+  </div>
+  <div class="search">
+    <label class="sr-only" for="search-input">搜索技能</label>
+    <input id="search-input" type="search" placeholder="搜索技能（中文 / English）" autocomplete="off"
+      role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="search-results">
+    <kbd class="hint-key">/</kbd>
+    <ul id="search-results" class="search-results" role="listbox" aria-label="搜索结果" hidden></ul>
+  </div>
+  <div class="actions">
+    <label class="sr-only" for="route-select">学习路线</label>
+    <select id="route-select" title="选一条路线，左边会列出按顺序要学的技能">
+      <option value="">路线：自由探索</option>
+    </select>
+    <button class="btn" id="btn-fit" title="缩放到能看到全图（快捷键 0）">适应屏幕</button>
+    <div class="menu">
+      <button class="btn" id="btn-menu" aria-haspopup="true" aria-expanded="false">进度 ▾</button>
+      <div class="menu-pop" id="menu-pop" hidden>
+        <button id="btn-export">导出进度（JSON）</button>
+        <label class="as-btn">导入进度…<input type="file" id="file-import" accept="application/json" hidden></label>
+        <button id="btn-reset" class="danger">清空进度</button>
+      </div>
+    </div>
+    <button class="icon-btn" id="btn-help" aria-label="使用说明" title="使用说明">?</button>
+  </div>
+</header>
+
+<main class="layout" id="layout" data-view="overview">
+  <aside class="side" id="side" aria-label="学习计划">
+    <section class="intro" id="intro" hidden>
+      <h2>怎么用</h2>
+      <ol>
+        <li><b>总览里每块是一个领域</b>。从最左边一列标着“可以开始”的领域入手；下面“现在能学”已经按重要性排好。</li>
+        <li><b>点一个领域</b>进入它的技能地图；<b>点一个技能</b>看它学什么、去哪学、练习题，以及它的前置链。</li>
+        <li><b>学会后点“点亮”</b>。必须前置没点亮的技能是锁着的；点亮前置后它会自动解锁。</li>
+        <li>想直奔某个方向：选上面的<b>路线</b>，或在技能详情里点<b>设为目标</b>，左边会排出要学的顺序；不想要了点计划旁的“取消目标”，或把路线选回“自由探索”。</li>
+      </ol>
+      <button class="btn small" id="btn-intro-ok">知道了</button>
+    </section>
+
+    <section class="plan" id="plan" hidden>
+      <div class="sec-head">
+        <h2 id="plan-title">学习计划</h2>
+        <button class="link-btn" id="btn-plan-clear">取消目标</button>
+      </div>
+      <p class="sec-note" id="plan-note"></p>
+      <ol class="item-list" id="plan-list"></ol>
+    </section>
+
+    <section class="next">
+      <div class="sec-head">
+        <h2>现在能学 <span class="count" id="next-count"></span></h2>
+      </div>
+      <p class="sec-note">按“学完能解锁多少后续技能”排序，越靠前越该先学。</p>
+      <ol class="item-list" id="next-list"></ol>
+      <button class="link-btn" id="btn-next-more" hidden>显示全部</button>
+    </section>
+
+    <section class="legend" aria-label="图例">
+      <h2>图例</h2>
+      <ul>
+        <li><span class="lg-card lit"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span>已点亮</li>
+        <li><span class="lg-card avail"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.5"/><path d="M8 5.5v5M5.5 8h5"/></svg></span>现在能学</li>
+        <li><span class="lg-card locked"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="7" width="9" height="6.5" rx="1"/><path d="M5.5 7V5.2a2.5 2.5 0 015 0V7"/></svg></span>未解锁（缺必须前置）</li>
+        <li><span class="lg-line req"></span>必须前置：点亮它才能解锁下一个</li>
+        <li><span class="lg-line rec"></span>推荐前置：建议先学，不挡路（选中技能时显示）</li>
+        <li><span class="lg-ext"><i style="background:#1f9d74"></i><i style="background:#2f7fd1"></i></span>卡片左上角彩点：还要用到其他领域的必须前置，颜色是那个领域（选中技能时画出连线）</li>
+        <li><span class="lg-card opt"></span>虚线框：选修（不在 CS2023 课程标准的核心主题里）</li>
+      </ul>
+    </section>
+  </aside>
+
+  <section class="ov-wrap" id="ov-wrap" aria-labelledby="ov-title">
+    <div class="ov-head">
+      <div class="ov-intro">
+        <h2 class="ov-title" id="ov-title">领域总览</h2>
+        <p class="ov-sub">每块是一个领域，里面的小方块是它的技能，和技能地图一样按步骤从左往右排。连线表示右边领域的技能要用到左边领域的必须前置，线越粗条数越多。<b>从最左边一列开始</b>，点一块进入它的技能地图。</p>
+      </div>
+      <ul class="ov-legend" aria-label="总览图例">
+        <li><span class="mini-key lit"></span>已点亮</li>
+        <li><span class="mini-key avail"></span>现在能学</li>
+        <li><span class="mini-key locked"></span>未解锁</li>
+        <li><span class="road-key"></span>跨领域必须前置</li>
+      </ul>
+    </div>
+    <div class="ov-axis" aria-hidden="true"><span>起步</span><i></i><span>进阶</span><i></i><span>前沿</span></div>
+    <div class="ov-scroll">
+      <div class="ov-stage"></div>
+      <div class="zoom-ctl" role="group" aria-label="总览缩放">
+        <button class="icon-btn" id="ov-zoom-in" aria-label="放大">+</button>
+        <button class="icon-btn" id="ov-zoom-out" aria-label="缩小">−</button>
+      </div>
+    </div>
+    <p class="ov-caption" id="ov-caption" data-idle="把鼠标移到一个领域上（或用 Tab 选中），看它用到哪些领域的前置、又是哪些领域的前置。滚轮缩放，拖动平移，按 0 或“适应屏幕”看全图。"></p>
+  </section>
+
+  <section class="map-wrap" id="map-wrap" hidden aria-label="技能树地图。用 Tab 在技能之间移动，回车查看详情，G 打开知识导览图，L 点亮，Esc 取消选择。">
+    <div class="map" id="map">
+      <div id="lanes"></div>
+      <svg class="edges" id="edges" aria-hidden="true">
+        <defs>
+          <marker id="arr-req" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="arr-req"/></marker>
+          <marker id="arr-rec" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="arr-rec"/></marker>
+          <marker id="arr-out" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="arr-out"/></marker>
+        </defs>
+        <g id="edges-base"></g>
+        <g id="edges-focus"></g>
+      </svg>
+      <div id="cols"></div>
+      <div id="cards"></div>
+    </div>
+    <div class="zoom-ctl" role="group" aria-label="缩放">
+      <button class="icon-btn" id="btn-zoom-in" aria-label="放大">+</button>
+      <button class="icon-btn" id="btn-zoom-out" aria-label="缩小">−</button>
+    </div>
+  </section>
+
+  <aside class="panel" id="panel" aria-label="技能详情" hidden>
+    <div class="panel-inner" id="panel-inner"></div>
+  </aside>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden>
+  <span id="toast-msg"></span>
+  <button class="link-btn" id="toast-action" hidden></button>
+</div>
+
+<dialog id="help-dialog">
+  <h2>使用说明</h2>
+  <ul>
+    <li><b>总览</b>：每块是一个领域，连线是领域之间的必须前置（线越粗条数越多）。点一块进入它的技能地图，点“下一步”直接打开该领域现在最值得学的技能。</li>
+    <li><b>目标与路线</b>：在技能详情里点“设为目标”，或在上面选一条路线，左边会按顺序列出要学的技能。取消：再打开那个技能点“取消目标”，或点左边计划旁的“取消目标 / 退出路线”，或把路线选回“自由探索”。</li>
+    <li><b>步骤</b>：横轴“第 N 步”= 前面至少有 N−1 层必须前置。同一步里的技能互不依赖，可以按兴趣挑。</li>
+    <li><b>必须前置</b>：真实大学课程把它列为先修，并且不会它就学不懂入门内容。没点亮就不能点亮下一个。标着“待核实”的是按常见课程体系起草、还在找课程证据的。</li>
+    <li><b>推荐前置</b>：有些课程建议先学、或只在深入层才用到。只提示，不挡路。</li>
+    <li><b>D1–D4</b>：D1 核心基础、D2 工程实践、D3 专业深入、D4 高级理论与科研。卡片上的标记是这个技能的入门层；练习题按入门层出。</li>
+    <li><b>操作</b>：拖动平移，滚轮或双指缩放；单击技能看详情，<b>双击技能打开知识导览图</b>；Tab 在技能间移动，回车看详情，G 打开知识导览图，L 点亮/取消，Esc 取消选择（再按一次回到总览），/ 搜索，0 适应屏幕。浏览器的后退键可以回到上一个视图。</li>
+    <li><b>进度</b>只保存在这个浏览器里；换设备前用“进度 ▾ → 导出”备份。</li>
+  </ul>
+  <form method="dialog"><button class="btn">关闭</button></form>
+</dialog>
+
+<script src="vendor/panzoom-4.6.2.min.js"></script>
+<script src="data.js"></script>
+<script src="overview.js"></script>
+<script src="guide.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

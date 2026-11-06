@@ -1,7 +1,7 @@
 ---
 title: "🔗 常用资源导航"
 date: "2026-10-09 12:00:00"
-description: "152 个亲测能打开的网站，每个都用一句话说清「是干什么的」，点一下就能进。"
+description: "按用途整理的学习资源，每个都用一句话说清「是干什么的」，点一下就能进。"
 cover: "/cover-default.svg"
 tags: ["资源", "导航"]
 pinned: true
@@ -16,6 +16,8 @@ pinned: true
 
 | 网站 | 是什么 | 直接进 |
 |---|---|---|
+| **计算机与数学技能树** | zeroa234 制作的学习导航，查看知识脉络与先修关系，规划学习路线。[视频介绍](https://www.bilibili.com/video/BV1FTx46CEN8/) | [打开技能树](https://zeroa234.github.io/cs-math-skill-tree/) |
+| **计算机闯关学习** | zeroa234 制作的互动练习，以小课和挑战辅助学习，内容持续完善。[视频介绍](https://www.bilibili.com/video/BV1ZSxm6eECB/) | [进入闯关](https://zeroa234.github.io/cs-math-skill-game/#/) |
 | **东秦计科人生存手册** | 学长写的新生避坑指南：Git 怎么用、Vim 怎么入门、算法从哪开始、保研怎么准备，还有龙芯实验室的招新介绍。新生强烈建议先翻一遍 | [manual.shettydev.com](https://manual.shettydev.com/loongson/) |
 | **菜鸟教程** | 查语法用的总入口：C、C++、Java、Python、SQL、HTML、JS 都有例子，还能在线跑一段试试。写代码时突然想不起某个语法怎么写，来这搜最快 | [runoob.com](https://www.runoob.com/) |
 | **CS 自学指南** | 国内最出名的计算机自学路线图，把 MIT、伯克利、CMU 的公开课按难度排好了。不知道从哪学起，从这一本开始 | [csdiy.wiki](https://csdiy.wiki/) |
@@ -335,4 +337,4 @@ pinned: true
 
 ---
 
-**最后更新：2026-10-31** · 全部 152 条链接已实测可用
+**最后更新：2026-11-06** · 新增计算机与数学技能树、闯关学习入口及介绍视频

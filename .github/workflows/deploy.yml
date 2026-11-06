@@ -13,6 +13,7 @@ on:
       - 'sportworld.html'
       - 'downloads/**'
       - 'tools/**'
+      - 'skill-tree/**'
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
@@ -131,6 +132,7 @@ jobs:
           if [ -f sportworld.html ]; then cp sportworld.html public/sportworld.html; fi
           if [ -d downloads ]; then mkdir -p public/downloads; cp -r downloads/* public/downloads/; fi
           if [ -d tools ]; then mkdir -p public/tools; cp -r tools/* public/tools/; fi
+          if [ -d skill-tree ]; then cp -r skill-tree public/skill-tree; fi
           touch public/.nojekyll
           if [ -d assets ]; then cp -r assets public/; fi
           echo "--- public 结构 ---"
